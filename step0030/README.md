@@ -1,4 +1,4 @@
-# Hello Java World #
+# Java Starter #
 
 ## Step 30
 
@@ -11,6 +11,5 @@ Logging mit Log4j
 ### Build and run
 
 ```shell
-mvn clean package
-java -classpath target/starter-1.0-SNAPSHOT.jar de.conciso.starter.HelloWorld
+mvn clean package exec:java
 ```
