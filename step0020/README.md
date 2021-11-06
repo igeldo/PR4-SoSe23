@@ -2,7 +2,7 @@
 
 ## Step 20
 
-Build mit Maven
+Maven-Plugin exec
 
 ### Prerequisites
 - Java 11 JDK
