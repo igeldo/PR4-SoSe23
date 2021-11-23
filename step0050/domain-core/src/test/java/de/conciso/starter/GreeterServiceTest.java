@@ -14,7 +14,7 @@ class GreeterServiceTest {
   GreeterService cut = new GreeterService();
 
   @Nested
-  class Given_a_name {
+  class Given_a_name_Georg {
     String name;
 
     @BeforeEach
@@ -34,6 +34,30 @@ class GreeterServiceTest {
       @Test
       void then_result_is_Hello_Georg() {
         assertThat(result).isEqualTo("Hello Georg");
+      }
+    }
+  }
+  @Nested
+  class Given_a_name_Burkhard {
+    String name;
+
+    @BeforeEach
+    void arrange() {
+      name = "Burkhard";
+    }
+
+    @Nested
+    class When_calling_greet {
+      String result;
+
+      @BeforeEach
+      void act() {
+        result = cut.greet(name);
+      }
+
+      @Test
+      void then_result_is_Hello_Burkhard() {
+        assertThat(result).isEqualTo("Hello Burkhard");
       }
     }
   }
