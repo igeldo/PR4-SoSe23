@@ -19,6 +19,15 @@
                     <groupId>org.codehaus.mojo</groupId>
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>${exec-maven-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>Execute</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>java</goal>
+                            </goals>
+                        </execution>
+                    </executions>
                     <configuration>
                         <mainClass>de.conciso.starter.HelloWorld</mainClass>
                     </configuration>
