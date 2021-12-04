@@ -13,3 +13,6 @@ Dependency injection mit Spring
 ```shell
 mvn clean package spring-boot:run
 ```
+
+Im Browser aufrufen: http://localhost:8080/api/hello?name=Georg
+
