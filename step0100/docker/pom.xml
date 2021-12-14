@@ -50,7 +50,6 @@
                     <execution>
                         <id>fabric8</id>
                         <goals>
-                            <goal>resource</goal>
                             <goal>build</goal>
                         </goals>
                     </execution>

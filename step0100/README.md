@@ -1,8 +1,8 @@
 # Java Starter #
 
-## Step 90
+## Step 100
 
-Store data with Spring Data in PostgreSQL
+Deploy service as docker container
 
 ### Prerequisites
 - Java 11 JDK
@@ -12,6 +12,10 @@ Store data with Spring Data in PostgreSQL
 ### Build and run
 
 ```shell
-docker-compose docker/
-mvn clean package spring-boot:run
+mvn clean install
+docker-compose -f docker/src/test/docker/docker-compose.yml up
 ```
+
+Open in browser: 
+- http://localhost:8080/createPerson.html
+- http://localhost:8080/findPerson.html
