@@ -1,0 +1,69 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>de.conciso.starter</groupId>
+        <artifactId>starter</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>docker</artifactId>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.fabric8</groupId>
+                <artifactId>fabric8-maven-plugin</artifactId>
+                <configuration>
+                    <images>
+                        <image>
+                            <name>java-starter:latest</name>
+                            <build>
+                                <from>openjdk:11.0.13-slim-bullseye</from>
+                                <ports>
+                                    <port>8080/tcp</port>
+                                </ports>
+                                <assembly>
+                                    <basedir>/app</basedir>
+                                    <inline>
+                                        <files>
+                                            <file>
+                                                <source>
+                                                    ..${file.separator}app${file.separator}target${file.separator}app-${project.version}.jar
+                                                </source>
+                                            </file>
+                                        </files>
+                                    </inline>
+                                </assembly>
+                                <entryPoint>
+                                    <shell>
+                                        java -jar /app/app-${project.version}.jar
+                                    </shell>
+                                </entryPoint>
+                            </build>
+                        </image>
+                    </images>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>fabric8</id>
+                        <goals>
+                            <goal>resource</goal>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>de.conciso.starter</groupId>
+            <artifactId>app</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>
