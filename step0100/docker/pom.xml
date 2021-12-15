@@ -21,7 +21,7 @@
                         <image>
                             <name>java-starter:latest</name>
                             <build>
-                                <from>openjdk:11.0.13-slim-bullseye</from>
+                                <from>openjdk:17.0.1-slim-bullseye</from>
                                 <ports>
                                     <port>8080/tcp</port>
                                 </ports>
