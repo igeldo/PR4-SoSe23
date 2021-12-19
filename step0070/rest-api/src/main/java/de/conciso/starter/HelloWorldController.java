@@ -4,10 +4,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+
+@RequestMapping("/api/hello")
 public class HelloWorldController {
 
   private static final Logger logger = LogManager.getLogger(HelloWorldController.class);
@@ -18,10 +22,15 @@ public class HelloWorldController {
     this.greeter = greeter;
   }
 
-  @GetMapping(value = "/api/hello", produces = MediaType.TEXT_PLAIN_VALUE)
+  @GetMapping(produces = MediaType.TEXT_PLAIN_VALUE)
   public String sayHello(@RequestParam("name") String name) {
     var greetings = greeter.greet(name);
     logger.info("response: " + greetings);
     return greetings;
+  }
+
+  @GetMapping(value = "/{name}", produces = MediaType.TEXT_PLAIN_VALUE)
+  public String sayHelloWithPathVariable(@PathVariable("name") String name) {
+    return sayHello(name);
   }
 }
