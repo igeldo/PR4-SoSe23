@@ -11,5 +11,5 @@ Implementierung einer Service-Klasse
 ### Build and run
 
 ```shell
-mvn clean package
+mvn clean package exec:java
 ```

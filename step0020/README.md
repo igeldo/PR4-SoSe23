@@ -11,5 +11,5 @@ Maven-Plugin exec
 ### Build and run
 
 ```shell
-mvn clean package
+mvn clean package exec:java
 ```
