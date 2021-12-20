@@ -5,7 +5,7 @@
 Aufteilung in Module
 
 ### Prerequisites
-- Java 17 JDK
+- Java 11 JDK
 - Maven
 
 ### Build and run

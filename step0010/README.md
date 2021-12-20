@@ -5,7 +5,7 @@
 Unser erstes Java-Programm
 
 ### Prerequisites
-- Java 17 JDK
+- Java 11 JDK
 
 ### Build and run
 

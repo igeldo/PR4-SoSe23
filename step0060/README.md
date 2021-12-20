@@ -5,7 +5,7 @@
 Controller mit Spring Boot
 
 ### Prerequisites
-- Java 17 JDK
+- Java 11 JDK
 - Maven
 
 ### Build and run

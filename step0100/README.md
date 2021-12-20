@@ -5,7 +5,7 @@
 Deploy service as docker container
 
 ### Prerequisites
-- Java 17 JDK
+- Java 11 JDK
 - Maven
 - Docker
 

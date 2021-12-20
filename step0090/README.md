@@ -5,7 +5,7 @@
 Store data with Spring Data in PostgreSQL
 
 ### Prerequisites
-- Java 17 JDK
+- Java 11 JDK
 - Maven
 - Docker
 
