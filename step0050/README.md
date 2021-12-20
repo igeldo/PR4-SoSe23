@@ -11,5 +11,5 @@ Unit-Tests mit JUnit 5 und AssertJ
 ### Build and run
 
 ```shell
-mvn clean package exec:java
+mvn clean package
 ```
