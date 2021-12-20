@@ -11,5 +11,5 @@ Aufteilung in Module
 ### Build and run
 
 ```shell
-mvn clean package exec:java
+mvn clean package
 ```
