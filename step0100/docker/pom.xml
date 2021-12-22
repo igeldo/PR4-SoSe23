@@ -17,11 +17,12 @@
                 <groupId>io.fabric8</groupId>
                 <artifactId>docker-maven-plugin</artifactId>
                 <configuration>
+                    <skip>false</skip>
                     <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
                     <showLogs>true</showLogs>
                     <images>
                         <image>
-                            <alias>service</alias>
+                            <alias>java-starter</alias>
                             <name>java-starter:latest</name>
                             <build>
                                 <from>openjdk:11.0.13-slim-bullseye</from>
@@ -48,7 +49,7 @@
                             </build>
                             <run>
                                 <dependsOn>
-                                    <container>postgres</container>
+                                    <container>db</container>
                                 </dependsOn>
                                 <network>
                                     <name>java-starter-network</name>
@@ -68,7 +69,7 @@
                             </run>
                         </image>
                         <image>
-                            <alias>postgres</alias>
+                            <alias>db</alias>
                             <name>postgres:11.14-bullseye</name>
                             <run>
                                 <network>

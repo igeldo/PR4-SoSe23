@@ -12,7 +12,7 @@ Deploy service as docker container
 ### Build and run
 
 ```shell
-mvn clean install docker:start
+mvn clean install docker:run
 ```
 
 Alternative:
