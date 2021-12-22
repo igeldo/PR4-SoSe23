@@ -25,7 +25,7 @@
                             <alias>java-starter</alias>
                             <name>java-starter:latest</name>
                             <build>
-                                <from>openjdk:11.0.13-slim-bullseye</from>
+                                <from>${docker-image.openjdk}</from>
                                 <ports>
                                     <port>8080/tcp</port>
                                 </ports>
@@ -61,16 +61,11 @@
                                 <env>
                                     <DATABASE_CONNECTION_URL>jdbc:postgresql://db:5432/person</DATABASE_CONNECTION_URL>
                                 </env>
-                                <log>
-                                    <prefix>STARTER&gt;%1z</prefix>
-                                    <date>ISO8601</date>
-                                    <color>yellow</color>
-                                </log>
                             </run>
                         </image>
                         <image>
                             <alias>db</alias>
-                            <name>postgres:11.14-bullseye</name>
+                            <name>${docker-image.postgres}</name>
                             <run>
                                 <network>
                                     <name>java-starter-network</name>
@@ -84,11 +79,6 @@
                                     <POSTGRES_PASSWORD>passGeheim</POSTGRES_PASSWORD>
                                     <POSTGRES_DB>person</POSTGRES_DB>
                                 </env>
-                                <log>
-                                    <prefix>DB&gt;%1z</prefix>
-                                    <date>ISO8601</date>
-                                    <color>cyan</color>
-                                </log>
                             </run>
                         </image>
                     </images>
