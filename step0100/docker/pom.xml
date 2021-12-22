@@ -15,10 +15,13 @@
         <plugins>
             <plugin>
                 <groupId>io.fabric8</groupId>
-                <artifactId>fabric8-maven-plugin</artifactId>
+                <artifactId>docker-maven-plugin</artifactId>
                 <configuration>
+                    <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
+                    <showLogs>true</showLogs>
                     <images>
                         <image>
+                            <alias>service</alias>
                             <name>java-starter:latest</name>
                             <build>
                                 <from>openjdk:11.0.13-slim-bullseye</from>
@@ -43,6 +46,49 @@
                                     </shell>
                                 </entryPoint>
                             </build>
+                            <run>
+                                <dependsOn>
+                                    <container>postgres</container>
+                                </dependsOn>
+                                <network>
+                                    <name>java-starter-network</name>
+                                    <alias>java-starter</alias>
+                                </network>
+                                <ports>
+                                    <port>8080:8080</port>
+                                </ports>
+                                <env>
+                                    <DATABASE_CONNECTION_URL>jdbc:postgresql://db:5432/person</DATABASE_CONNECTION_URL>
+                                </env>
+                                <log>
+                                    <prefix>STARTER&gt;%1z</prefix>
+                                    <date>ISO8601</date>
+                                    <color>yellow</color>
+                                </log>
+                            </run>
+                        </image>
+                        <image>
+                            <alias>postgres</alias>
+                            <name>postgres:11.14-bullseye</name>
+                            <run>
+                                <network>
+                                    <name>java-starter-network</name>
+                                    <alias>db</alias>
+                                </network>
+                                <ports>
+                                    <port>5432:5432</port>
+                                </ports>
+                                <env>
+                                    <POSTGRES_USER>java-starter</POSTGRES_USER>
+                                    <POSTGRES_PASSWORD>passGeheim</POSTGRES_PASSWORD>
+                                    <POSTGRES_DB>person</POSTGRES_DB>
+                                </env>
+                                <log>
+                                    <prefix>DB&gt;%1z</prefix>
+                                    <date>ISO8601</date>
+                                    <color>cyan</color>
+                                </log>
+                            </run>
                         </image>
                     </images>
                 </configuration>

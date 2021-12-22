@@ -12,6 +12,11 @@ Deploy service as docker container
 ### Build and run
 
 ```shell
+mvn clean install docker:start
+```
+
+Alternative:
+```shell
 mvn clean install
 docker-compose -f docker/src/test/docker/docker-compose.yml up
 ```
