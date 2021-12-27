@@ -130,6 +130,7 @@
                                             <POSTGRES_USER>java-starter</POSTGRES_USER>
                                             <POSTGRES_PASSWORD>passGeheim</POSTGRES_PASSWORD>
                                             <POSTGRES_DB>person</POSTGRES_DB>
+                                            <PGPORT>5433</PGPORT>
                                         </env>
                                     </run>
                                 </image>
@@ -164,7 +165,8 @@
                                             <mode>host</mode>
                                         </network>
                                         <env>
-                                            <DATABASE_CONNECTION_URL>jdbc:postgresql://localhost:5432/person</DATABASE_CONNECTION_URL>
+                                            <DATABASE_CONNECTION_URL>jdbc:postgresql://localhost:5433/person
+                                            </DATABASE_CONNECTION_URL>
                                         </env>
                                     </run>
                                 </image>
