@@ -65,8 +65,8 @@
                                             <port>8080:8080</port>
                                         </ports>
                                         <env>
-                                            <DATABASE_CONNECTION_URL>jdbc:postgresql://db:5432/person
-                                            </DATABASE_CONNECTION_URL>
+                                            <SPRING_DATASOURCE_URL>jdbc:postgresql://db:5432/person
+                                            </SPRING_DATASOURCE_URL>
                                         </env>
                                     </run>
                                 </image>
@@ -165,8 +165,8 @@
                                             <mode>host</mode>
                                         </network>
                                         <env>
-                                            <DATABASE_CONNECTION_URL>jdbc:postgresql://localhost:5433/person
-                                            </DATABASE_CONNECTION_URL>
+                                            <SPRING_DATASOURCE_URL>jdbc:postgresql://localhost:5433/person
+                                            </SPRING_DATASOURCE_URL>
                                         </env>
                                     </run>
                                 </image>
