@@ -1,0 +1,10 @@
+version: '3'
+services:
+  postgres:
+    network_mode: host
+    image: postgres:11.14-bullseye
+    environment:
+      - POSTGRES_USER=java-starter
+      - POSTGRES_PASSWORD=passGeheim
+      - POSTGRES_DB=person
+      - PGPORT=5433
