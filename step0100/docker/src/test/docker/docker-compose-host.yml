@@ -12,4 +12,4 @@ services:
     network_mode: host
     image: java-starter:latest
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5433/person
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5433/person
