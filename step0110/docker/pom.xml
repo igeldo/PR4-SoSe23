@@ -20,6 +20,7 @@
                     <skip>false</skip>
                     <autoCreateCustomNetworks>true</autoCreateCustomNetworks>
                     <showLogs>true</showLogs>
+                    <containerNamePattern>%a</containerNamePattern>
                     <images>
                         <image>
                             <alias>java-starter</alias>
