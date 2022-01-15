@@ -24,3 +24,6 @@ docker-compose -f docker/src/test/docker/docker-compose.yml up
 Open in browser: 
 - http://localhost:8080/createPerson.html
 - http://localhost:8080/findPerson.html
+
+Keycloak admin console:
+- http://localhost:8081/auth/admin/master/console/#/realms/java-starter-realm

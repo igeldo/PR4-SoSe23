@@ -13,12 +13,12 @@ services:
     image: jboss/keycloak:16.1.0
     ports:
       - 8081:8080
-      - 9991:9990
     volumes:
       - ./data:/tmp/data
     environment:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=passKeycloakAdmin
+      - KEYCLOAK_IMPORT=/tmp/data/java-starter-realm.json
   java-starter:
     container_name: java-starter
     image: java-starter:latest

@@ -81,6 +81,29 @@
                                 </env>
                             </run>
                         </image>
+                        <image>
+                            <alias>idm</alias>
+                            <name>${docker-image.keycloak}</name>
+                            <run>
+                                <network>
+                                    <name>java-starter-network</name>
+                                    <alias>idm</alias>
+                                </network>
+                                <ports>
+                                    <port>8081:8080</port>
+                                </ports>
+                                <volumes>
+                                    <bind>
+                                        <volume>src/test/docker/data:/tmp/data</volume>
+                                    </bind>
+                                </volumes>
+                                <env>
+                                    <KEYCLOAK_USER>admin</KEYCLOAK_USER>
+                                    <KEYCLOAK_PASSWORD>passKeycloakAdmin</KEYCLOAK_PASSWORD>
+                                    <KEYCLOAK_IMPORT>/tmp/data/java-starter-realm.json</KEYCLOAK_IMPORT>
+                                </env>
+                            </run>
+                        </image>
                     </images>
                 </configuration>
                 <executions>
