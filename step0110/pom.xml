@@ -31,6 +31,7 @@
         <docker-image.openjdk>openjdk:11.0.13-slim-bullseye</docker-image.openjdk>
         <docker-image.postgres>postgres:11.14-bullseye</docker-image.postgres>
         <docker-image.keycloak>jboss/keycloak:16.1.0</docker-image.keycloak>
+        <keycloak-adapter.version>16.1.0</keycloak-adapter.version>
     </properties>
 
     <build>
@@ -87,6 +88,13 @@
                 <groupId>de.conciso.starter</groupId>
                 <artifactId>docker</artifactId>
                 <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.keycloak.bom</groupId>
+                <artifactId>keycloak-adapter-bom</artifactId>
+                <version>${keycloak-adapter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
