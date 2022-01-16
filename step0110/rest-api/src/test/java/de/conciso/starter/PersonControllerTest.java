@@ -27,7 +27,7 @@ class PersonControllerTest {
   PersonController cut;
 
   @Nested
-  class Given_the_Greeter_responds {
+  class Given_Person_can_be_created {
 
     @BeforeEach
     void arrange() {
