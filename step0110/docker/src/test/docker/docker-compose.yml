@@ -19,10 +19,10 @@ services:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=passKeycloakAdmin
       - KEYCLOAK_IMPORT=/tmp/data/java-starter-realm.json
-  #java-starter:
-  #  container_name: java-starter
-  #  image: java-starter:latest
-  #  ports:
-  #    - 8080:8080
-  #  environment:
-  #    - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/person
+#  java-starter:
+#    container_name: java-starter
+#    image: java-starter:latest
+#    ports:
+#      - 8080:8080
+#    environment:
+#      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/person
