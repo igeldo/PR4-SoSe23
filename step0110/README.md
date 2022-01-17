@@ -13,15 +13,17 @@ Secure service with Spring Security and Keycloak
 ### Build and run
 
 ```shell
-docker-compose -f docker/src/test/docker/docker-compose.yml up
-mvn clean package spring-boot:run
+mvn clean install docker:run
 ```
 
 Open in browser (uses unsecured endpoints): 
 - http://localhost:8080/createPerson.html
 - http://localhost:8080/findPerson.html
 
-For secured endpoints: use Postman
+For secured endpoints: 
+- http://localhost:8080/secured/createPerson.html
+- http://localhost:8080/secured/findPerson.html
+- use Postman!
 
 ### Keycloak configuration
 

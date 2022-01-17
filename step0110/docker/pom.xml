@@ -51,6 +51,7 @@
                             <run>
                                 <dependsOn>
                                     <container>db</container>
+                                    <container>idm</container>
                                 </dependsOn>
                                 <network>
                                     <name>java-starter-network</name>
@@ -61,6 +62,7 @@
                                 </ports>
                                 <env>
                                     <SPRING_DATASOURCE_URL>jdbc:postgresql://db:5432/person</SPRING_DATASOURCE_URL>
+                                    <AUTH_URL>http://idm:8080/auth</AUTH_URL>
                                 </env>
                             </run>
                         </image>
@@ -95,14 +97,36 @@
                                 </ports>
                                 <volumes>
                                     <bind>
-                                        <volume>src/test/docker/data:/tmp/data</volume>
+                                        <volume>src/test/docker/keycloak:/tmp/keycloak</volume>
                                     </bind>
                                 </volumes>
                                 <env>
                                     <KEYCLOAK_USER>admin</KEYCLOAK_USER>
                                     <KEYCLOAK_PASSWORD>passKeycloakAdmin</KEYCLOAK_PASSWORD>
-                                    <KEYCLOAK_IMPORT>/tmp/data/java-starter-realm.json</KEYCLOAK_IMPORT>
+                                    <KEYCLOAK_IMPORT>/tmp/keycloak/java-starter-realm.json</KEYCLOAK_IMPORT>
                                 </env>
+                            </run>
+                        </image>
+                        <image>
+                            <alias>traefik</alias>
+                            <name>${docker-image.traefik}</name>
+                            <run>
+                                <dependsOn>
+                                    <container>idm</container>
+                                </dependsOn>
+                                <network>
+                                    <name>java-starter-network</name>
+                                    <alias>traefik</alias>
+                                </network>
+                                <ports>
+                                    <port>8082:8080</port>
+                                    <port>10080:80</port>
+                                </ports>
+                                <volumes>
+                                    <bind>
+                                        <volume>src/test/docker/traefik:/etc/traefik</volume>
+                                    </bind>
+                                </volumes>
                             </run>
                         </image>
                     </images>

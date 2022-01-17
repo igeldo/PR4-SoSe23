@@ -12,31 +12,10 @@ services:
     container_name: idm
     image: jboss/keycloak:16.1.0
     ports:
-      - 8081:8080
+      - 10080:8080
     volumes:
       - ./keycloak:/tmp/keycloak
     environment:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=passKeycloakAdmin
       - KEYCLOAK_IMPORT=/tmp/keycloak/java-starter-realm.json
-  traefik:
-    container_name: traefik
-    image: traefik:1.6.6-alpine
-    depends_on:
-      - idm
-    ports:
-      - 8082:8080
-      - 10080:80
-    volumes:
-      - ./traefik:/etc/traefik
-  java-starter:
-    container_name: java-starter
-    image: java-starter:latest
-    depends_on:
-      - db
-      - idm
-    ports:
-      - 8080:8080
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/person
-      - AUTH_URL=http://idm:8080/auth

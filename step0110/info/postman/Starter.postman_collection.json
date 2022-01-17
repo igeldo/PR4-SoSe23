@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "3fada562-70ea-4afd-b611-bd9d12883045",
+		"_postman_id": "d61e196b-b9b7-4b38-88a4-3a79a63aa0f1",
 		"name": "Starter",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -206,11 +206,11 @@
 					]
 				},
 				"url": {
-					"raw": "localhost:8081/auth/realms/java-starter-realm/protocol/openid-connect/token",
+					"raw": "localhost:10080/auth/realms/java-starter-realm/protocol/openid-connect/token",
 					"host": [
 						"localhost"
 					],
-					"port": "8081",
+					"port": "10080",
 					"path": [
 						"auth",
 						"realms",
