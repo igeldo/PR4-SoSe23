@@ -31,7 +31,7 @@
         <docker-image.openjdk>openjdk:11.0.13-slim-bullseye</docker-image.openjdk>
         <docker-image.postgres>postgres:11.14-bullseye</docker-image.postgres>
         <docker-image.keycloak>jboss/keycloak:16.1.0</docker-image.keycloak>
-        <docker-image.traefik>traefik:1.6.6-alpine</docker-image.traefik>
+        <docker-image.traefik>traefik:1.7.34</docker-image.traefik>
         <keycloak-adapter.version>16.1.0</keycloak-adapter.version>
     </properties>
 
