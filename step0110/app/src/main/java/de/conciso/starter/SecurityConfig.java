@@ -46,7 +46,6 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         // setting this so the authentication provider will always reevaluate the token
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-    httpSecurity.authorizeRequests().antMatchers("/unsecured/**").permitAll();
     httpSecurity.authorizeRequests().antMatchers("/api/**").authenticated();
   }
 }
