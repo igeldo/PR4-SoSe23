@@ -1,12 +1,15 @@
 package de.conciso.starter;
 
+import lombok.Data;
+
+@Data
 public class CalculatorRepresentation {
 
-    public double firstNumber;
+    private double firstNumber;
 
-    public double secondNumber;
+    private double secondNumber;
 
-    public double result;
+    private double result;
 
-    public char currentOperator;
+    private char currentOperator;
 }

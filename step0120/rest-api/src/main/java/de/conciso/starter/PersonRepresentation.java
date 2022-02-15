@@ -1,18 +1,15 @@
 package de.conciso.starter;
 
-import org.immutables.value.Value;
+import lombok.Value;
 
-@Value.Immutable
-public interface PersonRepresentation {
+@Value
+public class PersonRepresentation {
 
-    String getVorname();
+    private String vorname;
 
-    String getName();
+    private String name;
 
     static PersonRepresentation from(Person person) {
-        return ImmutablePersonRepresentation.builder()
-            .vorname(person.getVorname())
-            .name(person.getName())
-            .build();
+        return new PersonRepresentation(person.getVorname(), person.getName());
     }
 }

@@ -55,10 +55,7 @@ class PersonControllerTest {
 
       @Test
       void then_body_is_correct() {
-        var expected = ImmutablePersonRepresentation.builder()
-            .vorname("Hugo")
-            .name("Tester")
-            .build();
+        var expected = new PersonRepresentation("Hugo", "Tester");
         assertThat(result.getBody()).isEqualTo(expected);
       }
     }

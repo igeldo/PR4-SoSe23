@@ -32,6 +32,7 @@
         <docker-image.postgres>postgres:11.14-bullseye</docker-image.postgres>
         <docker-image.keycloak>jboss/keycloak:16.1.0</docker-image.keycloak>
         <keycloak-adapter.version>16.1.0</keycloak-adapter.version>
+        <lombok.version>1.18.22</lombok.version>
     </properties>
 
     <build>
@@ -96,6 +97,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -115,10 +122,8 @@
             </exclusions>
         </dependency>
         <dependency>
-            <groupId>org.immutables</groupId>
-            <artifactId>value</artifactId>
-            <version>2.9.0</version>
-            <scope>provided</scope>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
         </dependency>
     </dependencies>
 

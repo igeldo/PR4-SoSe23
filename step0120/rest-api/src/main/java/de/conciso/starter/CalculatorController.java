@@ -17,22 +17,22 @@ public class CalculatorController {
       produces = MediaType.APPLICATION_JSON_VALUE
   )
   public ResponseEntity<CalculatorRepresentation> calculate(@RequestBody CalculatorRepresentation model) {
-    System.out.print("Calculate: " + model.firstNumber + " " + model.currentOperator + " " + model.secondNumber + " = ");
-    switch (model.currentOperator) {
+    System.out.print("Calculate: " + model.getFirstNumber() + " " + model.getCurrentOperator() + " " + model.getSecondNumber() + " = ");
+    switch (model.getCurrentOperator()) {
       case '+':
-        model.result = model.firstNumber + model.secondNumber;
+        model.setResult(model.getFirstNumber() + model.getSecondNumber());
         break;
       case '-':
-        model.result = model.firstNumber - model.secondNumber;
+        model.setResult(model.getFirstNumber() - model.getSecondNumber());
         break;
       case '*':
-        model.result = model.firstNumber * model.secondNumber;
+        model.setResult(model.getFirstNumber() * model.getSecondNumber());
         break;
       case '/':
-        model.result = model.firstNumber / model.secondNumber;
+        model.setResult(model.getFirstNumber() / model.getSecondNumber());
         break;
     }
-    System.out.println(model.result);
+    System.out.println(model.getResult());
     return ResponseEntity.ok(model);
   }
 }
