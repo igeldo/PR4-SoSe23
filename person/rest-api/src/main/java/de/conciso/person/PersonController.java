@@ -1,4 +1,4 @@
-package de.conciso.starter;
+package de.conciso.person;
 
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

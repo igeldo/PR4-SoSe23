@@ -1,13 +1,13 @@
 services:
-  db-auftrag:
-    container_name: db-auftrag
+  db-person:
+    container_name: db-person
     image: postgres:11.14-bullseye
     ports:
-      - 5433:5432
+      - 5434:5432
     environment:
-      - POSTGRES_USER=auftrag
+      - POSTGRES_USER=person
       - POSTGRES_PASSWORD=passGeheim
-      - POSTGRES_DB=auftrag
+      - POSTGRES_DB=person
   idm:
     container_name: idm
     image: jboss/keycloak:16.1.0
@@ -19,11 +19,11 @@ services:
       - KEYCLOAK_USER=admin
       - KEYCLOAK_PASSWORD=passKeycloakAdmin
       - KEYCLOAK_IMPORT=/tmp/keycloak/java-starter-realm.json
-  auftrag:
-    container_name: auftrag
-    image: auftrag:latest
+  person:
+    container_name: person
+    image: person:latest
     depends_on:
-      - db-auftrag
+      - db-person
       - idm
     ports:
-      - 8082:8080
+      - 8083:8080
