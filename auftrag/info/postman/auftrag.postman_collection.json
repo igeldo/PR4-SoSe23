@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "d61e196b-b9b7-4b38-88a4-3a79a63aa0f1",
+		"_postman_id": "294d2030-6caa-4daa-8d58-42a10c60fe8f",
 		"name": "auftrag",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Find Person",
+			"name": "Find Auftrag",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
 					"accept": true
@@ -27,14 +27,14 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8080/api/person/1",
+					"raw": "localhost:8082/api/auftrag/1",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8082",
 					"path": [
 						"api",
-						"person",
+						"auftrag",
 						"1"
 					]
 				}
@@ -42,7 +42,7 @@
 			"response": []
 		},
 		{
-			"name": "Create Person",
+			"name": "Create Auftrag",
 			"protocolProfileBehavior": {
 				"disabledSystemHeaders": {
 					"accept": true
@@ -63,23 +63,19 @@
 					}
 				],
 				"url": {
-					"raw": "localhost:8080/api/person?vorname=Georg&name=Pietrek",
+					"raw": "localhost:8082/api/auftrag?bestellNummer=4711",
 					"host": [
 						"localhost"
 					],
-					"port": "8080",
+					"port": "8082",
 					"path": [
 						"api",
-						"person"
+						"auftrag"
 					],
 					"query": [
 						{
-							"key": "vorname",
-							"value": "Georg"
-						},
-						{
-							"key": "name",
-							"value": "Pietrek"
+							"key": "bestellNummer",
+							"value": "4711"
 						}
 					]
 				}
