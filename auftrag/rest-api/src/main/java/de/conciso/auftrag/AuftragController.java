@@ -11,19 +11,19 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auftrag")
-public class PersonController {
+public class AuftragController {
 
-  private final Personen personen;
+  private final Auftraege auftraege;
 
-  public PersonController(Personen personen) {
-    this.personen = personen;
+  public AuftragController(Auftraege auftraege) {
+    this.auftraege = auftraege;
   }
 
   @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<PersonRepresentation> create(@RequestParam("bestellNummer") String bestellNummer) {
+  public ResponseEntity<AuftragRepresentation> create(@RequestParam("bestellNummer") String bestellNummer) {
     try {
-      var person = personen.create(bestellNummer, bestellNummer);
-      return ResponseEntity.ok(PersonRepresentation.from(person));
+      var auftrag = auftraege.create(bestellNummer);
+      return ResponseEntity.ok(AuftragRepresentation.from(auftrag));
     } catch (IllegalArgumentException exception) {
       return ResponseEntity.badRequest().build();
     } catch (Exception exception) {
@@ -32,10 +32,11 @@ public class PersonController {
   }
 
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Person> findById(@PathVariable("id") int id) {
+  public ResponseEntity<AuftragRepresentation> findById(@PathVariable("id") int id) {
     try {
-      var found = personen.findById(id);
-      return found.map(ResponseEntity::ok)
+      return auftraege.findById(id)
+          .map(AuftragRepresentation::from)
+          .map(ResponseEntity::ok)
           .orElseGet(() -> ResponseEntity.notFound().build());
     } catch (Exception exception) {
       return ResponseEntity.internalServerError().build();
@@ -43,7 +44,7 @@ public class PersonController {
   }
 
   @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<Person> findByRequestParam(@RequestParam("id") int id) {
+  public ResponseEntity<AuftragRepresentation> findByRequestParam(@RequestParam("id") int id) {
     return findById(id);
   }
 }
