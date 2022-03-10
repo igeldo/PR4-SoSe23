@@ -6,6 +6,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -58,7 +59,12 @@ class PersonControllerTest {
 
       @Test
       void then_body_is_correct() {
-        var expected = new PersonRepresentation(42,"Hugo", "Test");
+        var expected = PersonRepresentation.builder()
+            .id(42)
+            .vorname("Hugo")
+            .name("Test")
+            .addresses(List.of())
+            .build();
         assertThat(result.getBody()).isEqualTo(expected);
       }
     }
@@ -93,7 +99,12 @@ class PersonControllerTest {
 
       @Test
       void then_body_is_correct() {
-        var expected = new PersonRepresentation(42,"Hugo", "Test");
+        var expected = PersonRepresentation.builder()
+            .id(42)
+            .vorname("Hugo")
+            .name("Test")
+            .addresses(List.of())
+            .build();
         assertThat(result.getBody()).isEqualTo(expected);
       }
     }

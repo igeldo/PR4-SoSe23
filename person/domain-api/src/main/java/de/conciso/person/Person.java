@@ -1,11 +1,17 @@
 package de.conciso.person;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Person {
@@ -13,8 +19,13 @@ public class Person {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
   private int id;
+
   private String vorname;
   private String name;
+
+  @OneToMany(cascade = CascadeType.ALL)
+  @JoinColumn(name = "personId", referencedColumnName = "id")
+  private List<Address> addresses = new ArrayList<>();
 
   public Person() {
   }
@@ -54,16 +65,11 @@ public class Person {
     this.name = name;
   }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Person person = (Person) o;
-    return id == person.id && Objects.equals(vorname, person.vorname) && Objects.equals(name, person.name);
+  public List<Address> getAddresses() {
+    return Collections.unmodifiableList(addresses);
   }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(id, vorname, name);
+  public void addAddress(Address address) {
+    addresses.add(address);
   }
 }

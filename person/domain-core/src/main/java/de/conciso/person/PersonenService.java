@@ -5,6 +5,7 @@ import java.util.Optional;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PersonenService implements Personen {
@@ -32,5 +33,16 @@ public class PersonenService implements Personen {
       logger.warn("no person found with id: " + id);
     }
     return found;
+  }
+
+  @Override
+  @Transactional
+  public Optional<Address> create(int personId, String strasse, int plz, String ort) {
+    return findById(personId)
+        .map(person -> {
+          var address = new Address(strasse, plz, ort);
+          person.addAddress(address);
+          return address;
+        });
   }
 }
