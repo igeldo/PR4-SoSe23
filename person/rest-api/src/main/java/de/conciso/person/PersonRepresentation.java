@@ -1,15 +1,21 @@
 package de.conciso.person;
 
+import lombok.Builder;
 import lombok.Value;
 
 @Value
+@Builder
 public class PersonRepresentation {
 
-    private String vorname;
-
-    private String name;
+    int id;
+    String vorname;
+    String name;
 
     static PersonRepresentation from(Person person) {
-        return new PersonRepresentation(person.getVorname(), person.getName());
+        return PersonRepresentation.builder()
+            .id(person.getId())
+            .vorname(person.getVorname())
+            .name(person.getName())
+            .build();
     }
 }

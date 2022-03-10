@@ -125,6 +125,11 @@ class AuftragControllerTest {
       void then_status_is_NOT_FOUND() {
         assertThat(result.getStatusCodeValue()).isEqualTo(404);
       }
+
+      @Test
+      void then_body_is_empty() {
+        assertThat(result.hasBody()).isFalse();
+      }
     }
   }
 }
