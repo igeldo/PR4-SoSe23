@@ -18,9 +18,8 @@ public class AuftraegeService implements Auftraege {
   }
 
   @Override
-  public Auftrag create(String bestellNummer) {
-    logger.info("create auftrag: " + bestellNummer);
-    var auftrag = new Auftrag(bestellNummer);
+  public Auftrag create(Auftrag auftrag) {
+    logger.info("create auftrag: " + auftrag.getBestellNummer());
     return auftragDAO.save(auftrag);
   }
 

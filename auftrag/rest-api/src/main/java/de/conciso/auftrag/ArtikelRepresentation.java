@@ -14,7 +14,7 @@ public class ArtikelRepresentation {
     String bezeichnung;
     int anzahl;
 
-    static ArtikelRepresentation from(Artikel artikel) {
+    public static ArtikelRepresentation from(Artikel artikel) {
         return ArtikelRepresentation.builder()
             .nummer(artikel.getNummer())
             .bezeichnung(artikel.getBezeichnung())
@@ -22,9 +22,13 @@ public class ArtikelRepresentation {
             .build();
     }
 
-    static List<ArtikelRepresentation> from(List<Artikel> artikel) {
+    public static List<ArtikelRepresentation> from(List<Artikel> artikel) {
         return artikel.stream()
             .map(ArtikelRepresentation::from)
             .collect(Collectors.toList());
+    }
+
+    public Artikel toArtikel() {
+        return new Artikel(nummer, bezeichnung, anzahl);
     }
 }

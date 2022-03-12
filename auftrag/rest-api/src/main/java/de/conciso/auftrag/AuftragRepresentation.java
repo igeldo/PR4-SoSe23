@@ -9,17 +9,26 @@ import lombok.Value;
 @Builder
 public class AuftragRepresentation {
 
-    int id;
-    String bestellNummer;
-    LieferadresseRepresentation lieferadresse;
-    List<ArtikelRepresentation> artikel;
+  String bestellNummer;
+  LieferadresseRepresentation lieferadresse;
+  List<ArtikelRepresentation> artikel;
 
-    static AuftragRepresentation from(Auftrag auftrag) {
-        return AuftragRepresentation.builder()
-            .id(auftrag.getId())
-            .bestellNummer(auftrag.getBestellNummer())
-            .lieferadresse(LieferadresseRepresentation.from(new Lieferadresse()))
-            .artikel(ArtikelRepresentation.from(auftrag.getArtikel()))
-            .build();
+  static AuftragRepresentation from(Auftrag auftrag) {
+    return AuftragRepresentation.builder()
+        .bestellNummer(auftrag.getBestellNummer())
+        .lieferadresse(LieferadresseRepresentation.from(auftrag.getLieferadresse()))
+        .artikel(ArtikelRepresentation.from(auftrag.getArtikel()))
+        .build();
+  }
+
+  public Auftrag toAuftrag() {
+    var auftrag = new Auftrag(bestellNummer);
+    if (lieferadresse != null) {
+      auftrag.setLieferadresse(lieferadresse.toLieferadresse());
     }
+    if (artikel != null) {
+      artikel.forEach(a -> auftrag.addArtikel(a.toArtikel()));
+    }
+    return auftrag;
+  }
 }
