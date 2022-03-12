@@ -42,9 +42,4 @@ public class AuftragController {
       return ResponseEntity.internalServerError().build();
     }
   }
-
-  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<AuftragRepresentation> findByRequestParam(@RequestParam("id") int id) {
-    return findById(id);
-  }
 }

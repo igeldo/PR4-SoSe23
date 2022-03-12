@@ -150,37 +150,6 @@ class PersonControllerTest {
         assertThat(result.getBody()).isEqualTo(expected);
       }
     }
-
-    @Nested
-    class When_calling_findByRequestParam {
-      ResponseEntity<PersonRepresentation> result;
-
-      @BeforeEach
-      void act() {
-        result = cut.findByRequestParam(ID);
-      }
-
-      @Test
-      void then_PersonenService_is_called() {
-        verify(personen).findById(ID);
-      }
-
-      @Test
-      void then_status_is_OK() {
-        assertThat(result.getStatusCode()).isEqualTo(HttpStatus.OK);
-      }
-
-      @Test
-      void then_body_is_correct() {
-        var expected = PersonRepresentation.builder()
-            .id(ID)
-            .vorname(VORNAME)
-            .name(NAME)
-            .addresses(List.of())
-            .build();
-        assertThat(result.getBody()).isEqualTo(expected);
-      }
-    }
   }
 
   @Nested

@@ -49,7 +49,6 @@ public class PersonController {
     }
   }
 
-
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<PersonRepresentation> findById(@PathVariable("id") int id) {
     try {
@@ -60,10 +59,5 @@ public class PersonController {
     } catch (Exception exception) {
       return ResponseEntity.internalServerError().build();
     }
-  }
-
-  @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-  public ResponseEntity<PersonRepresentation> findByRequestParam(@RequestParam("id") int id) {
-    return findById(id);
   }
 }

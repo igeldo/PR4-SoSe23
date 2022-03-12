@@ -1,4 +1,4 @@
-package de.conciso.person;
+package de.conciso.auftrag;
 
 import java.util.Objects;
 
@@ -8,27 +8,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Address {
+public class Lieferadresse {
 
   @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
+  @GeneratedValue(strategy=GenerationType.AUTO)
   private int id;
 
+  private String name;
   private String strasse;
   private int plz;
   private String ort;
 
-  public Address() {
+  public Lieferadresse() {
   }
 
-  public Address(String strasse, int plz, String ort) {
+  public Lieferadresse(String name, String strasse, int plz, String ort) {
+    this.name = name;
     this.strasse = strasse;
     this.plz = plz;
     this.ort = ort;
   }
 
-  public Address(int id, String strasse, int plz, String ort) {
+  public Lieferadresse(int id, String name, String strasse, int plz, String ort) {
     this.id = id;
+    this.name = name;
     this.strasse = strasse;
     this.plz = plz;
     this.ort = ort;
@@ -36,6 +39,14 @@ public class Address {
 
   public int getId() {
     return id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getStrasse() {
@@ -66,12 +77,12 @@ public class Address {
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
-    Address address = (Address) o;
-    return plz == address.plz && Objects.equals(strasse, address.strasse) && Objects.equals(ort, address.ort);
+    Lieferadresse that = (Lieferadresse) o;
+    return plz == that.plz && Objects.equals(name, that.name) && Objects.equals(strasse, that.strasse) && Objects.equals(ort, that.ort);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(strasse, plz, ort);
+    return Objects.hash(name, strasse, plz, ort);
   }
 }
