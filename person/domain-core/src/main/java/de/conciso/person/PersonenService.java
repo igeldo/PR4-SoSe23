@@ -37,12 +37,12 @@ public class PersonenService implements Personen {
 
   @Override
   @Transactional
-  public Optional<Address> create(int personId, String strasse, int plz, String ort) {
+  public Optional<Person> addAddress(int personId, String strasse, int plz, String ort) {
     return findById(personId)
         .map(person -> {
           var address = new Address(strasse, plz, ort);
           person.addAddress(address);
-          return address;
+          return person;
         });
   }
 }

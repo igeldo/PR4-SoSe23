@@ -72,4 +72,17 @@ public class Person {
   public void addAddress(Address address) {
     addresses.add(address);
   }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Person person = (Person) o;
+    return Objects.equals(vorname, person.vorname) && Objects.equals(name, person.name) && Objects.equals(addresses, person.addresses);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(vorname, name, addresses);
+  }
 }

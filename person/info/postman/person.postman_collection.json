@@ -87,6 +87,60 @@
 			"response": []
 		},
 		{
+			"name": "Create Address",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "localhost:8083/api/person/address?personId=1&strasse=Platvoets Kamp 7&plz=59387&ort=Ascheberg",
+					"host": [
+						"localhost"
+					],
+					"port": "8083",
+					"path": [
+						"api",
+						"person",
+						"address"
+					],
+					"query": [
+						{
+							"key": "personId",
+							"value": "1"
+						},
+						{
+							"key": "strasse",
+							"value": "Platvoets Kamp 7"
+						},
+						{
+							"key": "plz",
+							"value": "59387"
+						},
+						{
+							"key": "ort",
+							"value": "Ascheberg"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Login",
 			"event": [
 				{

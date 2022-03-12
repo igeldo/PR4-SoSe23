@@ -71,11 +71,11 @@ public class Address {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;
     Address address = (Address) o;
-    return id == address.id && plz == address.plz && Objects.equals(strasse, address.strasse) && Objects.equals(ort, address.ort);
+    return plz == address.plz && Objects.equals(strasse, address.strasse) && Objects.equals(ort, address.ort);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, strasse, plz, ort);
+    return Objects.hash(strasse, plz, ort);
   }
 }

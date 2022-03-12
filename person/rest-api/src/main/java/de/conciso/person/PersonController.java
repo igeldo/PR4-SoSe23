@@ -27,12 +27,28 @@ public class PersonController {
     try {
       var person = personen.create(vorname, name);
       return ResponseEntity.ok(PersonRepresentation.from(person));
-    } catch (IllegalArgumentException exception) {
-      return ResponseEntity.badRequest().build();
     } catch (Exception exception) {
       return ResponseEntity.internalServerError().build();
     }
   }
+
+  @PostMapping(path = "/address", produces = MediaType.APPLICATION_JSON_VALUE)
+  public ResponseEntity<PersonRepresentation> addAddress(
+      @RequestParam("personId") int personId,
+      @RequestParam("strasse") String strasse,
+      @RequestParam("plz") int plz,
+      @RequestParam("ort") String ort
+  ) {
+    try {
+      return personen.addAddress(personId, strasse, plz, ort)
+          .map(PersonRepresentation::from)
+          .map(ResponseEntity::ok)
+          .orElseGet(() -> ResponseEntity.notFound().build());
+    } catch (Exception exception) {
+      return ResponseEntity.internalServerError().build();
+    }
+  }
+
 
   @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
   public ResponseEntity<PersonRepresentation> findById(@PathVariable("id") int id) {
