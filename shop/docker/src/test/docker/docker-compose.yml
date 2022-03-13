@@ -1,0 +1,19 @@
+services:
+  idm:
+    container_name: idm
+    image: jboss/keycloak:16.1.0
+    ports:
+      - 8081:8080
+    volumes:
+      - ./keycloak:/tmp/keycloak
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=passKeycloakAdmin
+      - KEYCLOAK_IMPORT=/tmp/keycloak/java-starter-realm.json
+  shop:
+    container_name: shop
+    image: shop:latest
+    depends_on:
+      - idm
+    ports:
+      - 8080:8080

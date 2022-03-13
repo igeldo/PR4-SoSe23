@@ -20,7 +20,9 @@ public class AuftraegeService implements Auftraege {
   @Override
   public Auftrag create(Auftrag auftrag) {
     logger.info("create auftrag: " + auftrag.getBestellNummer());
-    return auftragDAO.save(auftrag);
+    var created = auftragDAO.save(auftrag);
+    logger.info("auftrag id: " + auftrag.getId());
+    return created;
   }
 
   @Override

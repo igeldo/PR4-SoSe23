@@ -50,6 +50,7 @@ class AuftragControllerTest {
       testAuftrag = new Auftrag(BESTELL_NUMMER);
       testAuftragWithId = new Auftrag(ID, BESTELL_NUMMER);
       expectedAuftragRepresentation = AuftragRepresentation.builder()
+          .id(ID)
           .bestellNummer(BESTELL_NUMMER)
           .artikel(List.of())
           .build();

@@ -38,6 +38,7 @@ public class PersonenService implements Personen {
   @Override
   @Transactional
   public Optional<Person> addAddress(int personId, String strasse, int plz, String ort) {
+    logger.info("adding address to person with id: " +personId);
     return findById(personId)
         .map(person -> {
           var address = new Address(strasse, plz, ort);

@@ -9,12 +9,14 @@ import lombok.Value;
 @Builder
 public class AuftragRepresentation {
 
+  int id;
   String bestellNummer;
   LieferadresseRepresentation lieferadresse;
   List<ArtikelRepresentation> artikel;
 
   static AuftragRepresentation from(Auftrag auftrag) {
     return AuftragRepresentation.builder()
+        .id(auftrag.getId())
         .bestellNummer(auftrag.getBestellNummer())
         .lieferadresse(LieferadresseRepresentation.from(auftrag.getLieferadresse()))
         .artikel(ArtikelRepresentation.from(auftrag.getArtikel()))
