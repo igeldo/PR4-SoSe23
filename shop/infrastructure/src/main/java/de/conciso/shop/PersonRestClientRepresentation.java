@@ -28,4 +28,11 @@ public class PersonRestClientRepresentation {
         )
         .build();
   }
+
+  public static PersonRestClientRepresentation from(Person person) {
+    return PersonRestClientRepresentation.builder()
+        .vorname(person.getVorname())
+        .name(person.getName())
+        .build();
+  }
 }

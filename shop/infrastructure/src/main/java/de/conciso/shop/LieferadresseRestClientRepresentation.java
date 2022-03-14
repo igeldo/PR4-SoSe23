@@ -23,7 +23,7 @@ public class LieferadresseRestClientRepresentation {
         .build();
   }
 
-  static LieferadresseRestClientRepresentation from(Lieferadresse lieferadresse) {
+  public static LieferadresseRestClientRepresentation from(Lieferadresse lieferadresse) {
     return LieferadresseRestClientRepresentation.builder()
         .name(lieferadresse.getName())
         .strasse(lieferadresse.getStrasse())

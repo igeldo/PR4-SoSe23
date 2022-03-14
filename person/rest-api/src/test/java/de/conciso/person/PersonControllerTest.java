@@ -1,8 +1,8 @@
 package de.conciso.person;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.verify;
 
@@ -43,7 +43,7 @@ class PersonControllerTest {
 
     @BeforeEach
     void arrange() {
-      given(personen.create(anyString(), anyString())).willReturn(new Person(ID, VORNAME, NAME));
+      given(personen.create(any(Person.class))).willReturn(new Person(ID, VORNAME, NAME));
     }
 
     @Nested
@@ -52,12 +52,17 @@ class PersonControllerTest {
 
       @BeforeEach
       void act() {
-        result = cut.create(VORNAME, NAME);
+        var personRepresentation = PersonRepresentation.builder()
+            .name(NAME)
+            .vorname(VORNAME)
+            .addresses(List.of())
+            .build();
+        result = cut.create(personRepresentation);
       }
 
       @Test
       void then_PersonenService_is_called() {
-        verify(personen).create(VORNAME, NAME);
+        verify(personen).create(new Person(VORNAME, NAME));
       }
 
       @Test
@@ -83,7 +88,7 @@ class PersonControllerTest {
 
     @BeforeEach
     void arrange() {
-      given(personen.create(anyString(), anyString())).willThrow(IllegalStateException.class);
+      given(personen.create(any(Person.class))).willThrow(IllegalStateException.class);
     }
 
     @Nested
@@ -92,12 +97,17 @@ class PersonControllerTest {
 
       @BeforeEach
       void act() {
-        result = cut.create(VORNAME, NAME);
+        var personRepresentation = PersonRepresentation.builder()
+            .name(NAME)
+            .vorname(VORNAME)
+            .addresses(List.of())
+            .build();
+        result = cut.create(personRepresentation);
       }
 
       @Test
       void then_PersonenService_is_called() {
-        verify(personen).create(VORNAME, NAME);
+        verify(personen).create(new Person(VORNAME, NAME));
       }
 
       @Test
@@ -227,7 +237,7 @@ class PersonControllerTest {
     void arrange() {
       var person = new Person(ID, VORNAME, NAME);
       person.addAddress(new Address(STRASSE, PLZ, ORT));
-      given(personen.addAddress(anyInt(), anyString(), anyInt(), anyString())).willReturn(Optional.of(person));
+      given(personen.addAddress(anyInt(), any(Address.class))).willReturn(Optional.of(person));
     }
 
     @Nested
@@ -236,12 +246,17 @@ class PersonControllerTest {
 
       @BeforeEach
       void act() {
-        result = cut.addAddress(ID, STRASSE, PLZ, ORT);
+        var addressRepresentation = AddressRepresentation.builder()
+            .strasse(STRASSE)
+            .plz(PLZ)
+            .ort(ORT)
+            .build();
+        result = cut.addAddress(ID, addressRepresentation);
       }
 
       @Test
       void then_PersonenService_is_called() {
-        verify(personen).addAddress(ID, STRASSE, PLZ, ORT);
+        verify(personen).addAddress(ID, new Address(STRASSE, PLZ, ORT));
       }
 
       @Test
@@ -272,7 +287,7 @@ class PersonControllerTest {
 
     @BeforeEach
     void arrange() {
-      given(personen.addAddress(anyInt(), anyString(), anyInt(), anyString())).willReturn(Optional.empty());
+      given(personen.addAddress(anyInt(), any(Address.class))).willReturn(Optional.empty());
     }
 
     @Nested
@@ -281,12 +296,17 @@ class PersonControllerTest {
 
       @BeforeEach
       void act() {
-        result = cut.addAddress(ID, STRASSE, PLZ, ORT);
+        var addressRepresentation = AddressRepresentation.builder()
+            .strasse(STRASSE)
+            .plz(PLZ)
+            .ort(ORT)
+            .build();
+        result = cut.addAddress(ID, addressRepresentation);
       }
 
       @Test
       void then_PersonenService_is_called() {
-        verify(personen).addAddress(ID, STRASSE, PLZ, ORT);
+        verify(personen).addAddress(ID, new Address(STRASSE, PLZ, ORT));
       }
 
       @Test
@@ -306,7 +326,7 @@ class PersonControllerTest {
 
     @BeforeEach
     void arrange() {
-      given(personen.addAddress(anyInt(), anyString(), anyInt(), anyString())).willThrow(IllegalStateException.class);
+      given(personen.addAddress(anyInt(), any(Address.class))).willThrow(IllegalStateException.class);
     }
 
     @Nested
@@ -315,12 +335,17 @@ class PersonControllerTest {
 
       @BeforeEach
       void act() {
-        result = cut.addAddress(ID, STRASSE, PLZ, ORT);
+        var addressRepresentation = AddressRepresentation.builder()
+            .strasse(STRASSE)
+            .plz(PLZ)
+            .ort(ORT)
+            .build();
+        result = cut.addAddress(ID, addressRepresentation);
       }
 
       @Test
       void then_PersonenService_is_called() {
-        verify(personen).addAddress(ID, STRASSE, PLZ, ORT);
+        verify(personen).addAddress(ID, new Address(STRASSE, PLZ, ORT));
       }
 
       @Test

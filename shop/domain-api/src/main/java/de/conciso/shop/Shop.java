@@ -3,9 +3,9 @@ package de.conciso.shop;
 import java.util.Optional;
 
 public interface Shop {
-  Person createPerson(String vorname, String name);
+  Person createPerson(Person person);
 
-  Optional<Person> addAddress(int personId, String strasse, int plz, String ort);
+  Optional<Person> addAddress(int personId, Address address);
 
   Optional<Person> findPerson(int id);
 

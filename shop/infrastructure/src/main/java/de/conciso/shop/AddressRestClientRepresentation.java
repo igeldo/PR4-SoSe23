@@ -1,5 +1,8 @@
 package de.conciso.shop;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import lombok.Builder;
 import lombok.Value;
 import lombok.extern.jackson.Jacksonized;
@@ -18,6 +21,14 @@ public class AddressRestClientRepresentation {
         .strasse(strasse)
         .plz(plz)
         .ort(ort)
+        .build();
+  }
+
+  public static AddressRestClientRepresentation from(Address address) {
+    return AddressRestClientRepresentation.builder()
+        .strasse(address.getStrasse())
+        .plz(address.getPlz())
+        .ort(address.getOrt())
         .build();
   }
 }

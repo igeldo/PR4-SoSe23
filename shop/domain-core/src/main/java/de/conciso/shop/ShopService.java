@@ -21,19 +21,15 @@ public class ShopService implements Shop {
   }
 
   @Override
-  public Person createPerson(String vorname, String name) {
-    logger.info("create person: " + vorname + " " + name);
-    var person = Person.builder()
-        .vorname(vorname)
-        .name(name)
-        .build();
+  public Person createPerson(Person person) {
+    logger.info("create person: " + person.getVorname() + " " + person.getName());
     return personen.create(person);
   }
 
   @Override
-  public Optional<Person> addAddress(int personId, String strasse, int plz, String ort) {
+  public Optional<Person> addAddress(int personId, Address address) {
     logger.info("adding address to person with id: " + personId);
-    return personen.addAddress(personId, strasse, plz, ort);
+    return personen.addAddress(personId, address);
   }
 
   @Override

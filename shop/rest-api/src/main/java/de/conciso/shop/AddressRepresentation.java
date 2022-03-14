@@ -14,7 +14,15 @@ public class AddressRepresentation {
     int plz;
     String ort;
 
-    static AddressRepresentation from(Address address) {
+    public Address toAddress() {
+        return Address.builder()
+            .strasse(strasse)
+            .plz(plz)
+            .ort(ort)
+            .build();
+    }
+
+    public static AddressRepresentation from(Address address) {
         return AddressRepresentation.builder()
             .strasse(address.getStrasse())
             .plz(address.getPlz())
@@ -22,7 +30,7 @@ public class AddressRepresentation {
             .build();
     }
 
-    static List<AddressRepresentation> from(List<Address> addresses) {
+    public static List<AddressRepresentation> from(List<Address> addresses) {
         if (addresses == null) {
             return List.of();
         }

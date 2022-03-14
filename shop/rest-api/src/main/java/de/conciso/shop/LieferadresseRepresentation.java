@@ -12,7 +12,7 @@ public class LieferadresseRepresentation {
   int plz;
   String ort;
 
-  static LieferadresseRepresentation from(Lieferadresse lieferadresse) {
+  public static LieferadresseRepresentation from(Lieferadresse lieferadresse) {
     return LieferadresseRepresentation.builder()
         .name(lieferadresse.getName())
         .strasse(lieferadresse.getStrasse())

@@ -18,11 +18,7 @@ public class PersonRestClient implements Personen {
   @Override
   public Person create(Person person) {
     return personenWebClient.post()
-        .uri(uriBuilder -> uriBuilder
-            .queryParam("vorname", person.getVorname())
-            .queryParam("name", person.getName())
-            .build()
-        )
+        .bodyValue(PersonRestClientRepresentation.from(person))
         .accept(MediaType.APPLICATION_JSON)
         .exchangeToMono(clientResponse -> clientResponse.bodyToMono(PersonRestClientRepresentation.class)
             .map(PersonRestClientRepresentation::toPerson)
@@ -31,16 +27,10 @@ public class PersonRestClient implements Personen {
   }
 
   @Override
-  public Optional<Person> addAddress(int personId, String strasse, int plz, String ort) {
+  public Optional<Person> addAddress(int personId, Address address) {
     return personenWebClient.post()
-        .uri(uriBuilder -> uriBuilder
-            .path("/address")
-            .queryParam("personId", personId)
-            .queryParam("strasse", strasse)
-            .queryParam("plz", plz)
-            .queryParam("ort", ort)
-            .build()
-        )
+        .uri(uriBuilder -> uriBuilder.path("/{id}/address").build(personId))
+        .bodyValue(AddressRestClientRepresentation.from(address))
         .accept(MediaType.APPLICATION_JSON)
         .exchangeToMono(clientResponse -> clientResponse.bodyToMono(PersonRestClientRepresentation.class)
             .map(PersonRestClientRepresentation::toPerson)

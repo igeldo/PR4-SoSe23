@@ -62,8 +62,17 @@
 						"type": "default"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"bestellNummer\": \"4711\",\n    \"lieferadresse\": {\n        \"name\": \"Georg Pietrek\",\n        \"strasse\": \"Platvoets Kamp 7\",\n        \"plz\": 59387,\n        \"ort\": \"Ascheberg\"\n    },\n    \"artikel\": [\n        {\n            \"nummer\": \"4712a\",\n            \"bezeichnung\": \"Schraube\",\n            \"anzahl\": 50 \n        },\n        {\n            \"nummer\": \"4713b\",\n            \"bezeichnung\": \"Hammer\",\n            \"anzahl\": 1 \n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8082/api/auftrag?bestellNummer=4711",
+					"raw": "localhost:8082/api/auftrag",
 					"host": [
 						"localhost"
 					],
@@ -71,12 +80,6 @@
 					"path": [
 						"api",
 						"auftrag"
-					],
-					"query": [
-						{
-							"key": "bestellNummer",
-							"value": "4711"
-						}
 					]
 				}
 			},

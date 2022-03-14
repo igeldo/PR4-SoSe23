@@ -26,8 +26,17 @@
 						"type": "default"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vorname\": \"Georg\",\n    \"name\": \"Pietrek\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/api/shop/person?vorname=Georg&name=Pietrek",
+					"raw": "localhost:8080/api/shop/person",
 					"host": [
 						"localhost"
 					],
@@ -36,16 +45,6 @@
 						"api",
 						"shop",
 						"person"
-					],
-					"query": [
-						{
-							"key": "vorname",
-							"value": "Georg"
-						},
-						{
-							"key": "name",
-							"value": "Pietrek"
-						}
 					]
 				}
 			},
@@ -72,8 +71,17 @@
 						"type": "default"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"strasse\": \"Platvoets Kamp 7\",\n    \"plz\": 59387,\n    \"ort\": \"Ascheberg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/api/shop/person/address?personId=1&strasse=Platvoets Kamp 7&plz=59387&ort=Ascheberg",
+					"raw": "localhost:8080/api/shop/person/1/address",
 					"host": [
 						"localhost"
 					],
@@ -82,25 +90,8 @@
 						"api",
 						"shop",
 						"person",
+						"1",
 						"address"
-					],
-					"query": [
-						{
-							"key": "personId",
-							"value": "1"
-						},
-						{
-							"key": "strasse",
-							"value": "Platvoets Kamp 7"
-						},
-						{
-							"key": "plz",
-							"value": "59387"
-						},
-						{
-							"key": "ort",
-							"value": "Ascheberg"
-						}
 					]
 				}
 			},
@@ -164,8 +155,17 @@
 						"type": "default"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"personId\": 1,\n    \"bestellNummer\": \"4711\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8080/api/shop/auftrag?personId=1&bestellnummer=4711",
+					"raw": "localhost:8080/api/shop/auftrag",
 					"host": [
 						"localhost"
 					],
@@ -174,16 +174,6 @@
 						"api",
 						"shop",
 						"auftrag"
-					],
-					"query": [
-						{
-							"key": "personId",
-							"value": "1"
-						},
-						{
-							"key": "bestellnummer",
-							"value": "4711"
-						}
 					]
 				}
 			},

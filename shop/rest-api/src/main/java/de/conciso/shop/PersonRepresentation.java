@@ -14,7 +14,14 @@ public class PersonRepresentation {
     String name;
     List<AddressRepresentation> addresses;
 
-    static PersonRepresentation from(Person person) {
+    public Person toPerson() {
+        return Person.builder()
+            .vorname(vorname)
+            .name(name)
+            .build();
+    }
+
+    public static PersonRepresentation from(Person person) {
         return PersonRepresentation.builder()
             .id(person.getId())
             .vorname(person.getVorname())

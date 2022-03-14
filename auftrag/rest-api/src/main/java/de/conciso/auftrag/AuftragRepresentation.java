@@ -14,15 +14,6 @@ public class AuftragRepresentation {
   LieferadresseRepresentation lieferadresse;
   List<ArtikelRepresentation> artikel;
 
-  static AuftragRepresentation from(Auftrag auftrag) {
-    return AuftragRepresentation.builder()
-        .id(auftrag.getId())
-        .bestellNummer(auftrag.getBestellNummer())
-        .lieferadresse(LieferadresseRepresentation.from(auftrag.getLieferadresse()))
-        .artikel(ArtikelRepresentation.from(auftrag.getArtikel()))
-        .build();
-  }
-
   public Auftrag toAuftrag() {
     var auftrag = new Auftrag(bestellNummer);
     if (lieferadresse != null) {
@@ -32,5 +23,14 @@ public class AuftragRepresentation {
       artikel.forEach(a -> auftrag.addArtikel(a.toArtikel()));
     }
     return auftrag;
+  }
+
+  public static AuftragRepresentation from(Auftrag auftrag) {
+    return AuftragRepresentation.builder()
+        .id(auftrag.getId())
+        .bestellNummer(auftrag.getBestellNummer())
+        .lieferadresse(LieferadresseRepresentation.from(auftrag.getLieferadresse()))
+        .artikel(ArtikelRepresentation.from(auftrag.getArtikel()))
+        .build();
   }
 }

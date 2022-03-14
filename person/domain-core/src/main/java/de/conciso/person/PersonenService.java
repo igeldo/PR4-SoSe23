@@ -19,9 +19,8 @@ public class PersonenService implements Personen {
   }
 
   @Override
-  public Person create(String vorname, String name) {
-    logger.info("create person: " + vorname + " " + name);
-    var person = new Person(vorname, name);
+  public Person create(Person person) {
+    logger.info("create person: " + person.getVorname() + " " + person.getName());
     return personDAO.save(person);
   }
 
@@ -37,11 +36,10 @@ public class PersonenService implements Personen {
 
   @Override
   @Transactional
-  public Optional<Person> addAddress(int personId, String strasse, int plz, String ort) {
+  public Optional<Person> addAddress(int personId, Address address) {
     logger.info("adding address to person with id: " +personId);
     return findById(personId)
         .map(person -> {
-          var address = new Address(strasse, plz, ort);
           person.addAddress(address);
           return person;
         });

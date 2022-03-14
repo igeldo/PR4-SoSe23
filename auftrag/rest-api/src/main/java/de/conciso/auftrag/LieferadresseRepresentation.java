@@ -12,16 +12,16 @@ public class LieferadresseRepresentation {
   int plz;
   String ort;
 
-  static LieferadresseRepresentation from(Lieferadresse lieferadresse) {
+  public Lieferadresse toLieferadresse() {
+    return new Lieferadresse(name, strasse, plz, ort);
+  }
+
+  public static LieferadresseRepresentation from(Lieferadresse lieferadresse) {
     return lieferadresse == null ? null : LieferadresseRepresentation.builder()
         .name(lieferadresse.getName())
         .strasse(lieferadresse.getStrasse())
         .plz(lieferadresse.getPlz())
         .ort(lieferadresse.getOrt())
         .build();
-  }
-
-  public Lieferadresse toLieferadresse() {
-    return new Lieferadresse(name, strasse, plz, ort);
   }
 }

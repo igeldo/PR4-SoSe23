@@ -62,8 +62,17 @@
 						"type": "default"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vorname\": \"Georg\",\n    \"name\": \"Pietrek\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8083/api/person?vorname=Georg&name=Pietrek",
+					"raw": "localhost:8083/api/person",
 					"host": [
 						"localhost"
 					],
@@ -71,16 +80,6 @@
 					"path": [
 						"api",
 						"person"
-					],
-					"query": [
-						{
-							"key": "vorname",
-							"value": "Georg"
-						},
-						{
-							"key": "name",
-							"value": "Pietrek"
-						}
 					]
 				}
 			},
@@ -107,8 +106,17 @@
 						"type": "default"
 					}
 				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"strasse\": \"Platvoets Kamp 7\",\n    \"plz\": 59387,\n    \"ort\": \"Ascheberg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
 				"url": {
-					"raw": "localhost:8083/api/person/address?personId=1&strasse=Platvoets Kamp 7&plz=59387&ort=Ascheberg",
+					"raw": "localhost:8083/api/person/1/address",
 					"host": [
 						"localhost"
 					],
@@ -116,25 +124,8 @@
 					"path": [
 						"api",
 						"person",
+						"1",
 						"address"
-					],
-					"query": [
-						{
-							"key": "personId",
-							"value": "1"
-						},
-						{
-							"key": "strasse",
-							"value": "Platvoets Kamp 7"
-						},
-						{
-							"key": "plz",
-							"value": "59387"
-						},
-						{
-							"key": "ort",
-							"value": "Ascheberg"
-						}
 					]
 				}
 			},

@@ -16,7 +16,11 @@ public class AddressRepresentation {
     int plz;
     String ort;
 
-    static AddressRepresentation from(Address address) {
+    public Address toAddress() {
+        return new Address(strasse, plz, ort);
+    }
+
+    public static AddressRepresentation from(Address address) {
         return AddressRepresentation.builder()
             .strasse(address.getStrasse())
             .plz(address.getPlz())
@@ -24,7 +28,7 @@ public class AddressRepresentation {
             .build();
     }
 
-    static List<AddressRepresentation> from(List<Address> addresses) {
+    public static List<AddressRepresentation> from(List<Address> addresses) {
         return addresses.stream()
             .map(AddressRepresentation::from)
             .collect(Collectors.toList());

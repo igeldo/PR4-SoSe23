@@ -58,7 +58,7 @@ class PersonenServiceTest {
 
         @BeforeEach
         void act() {
-          result = cut.create(VORNAME, NAME);
+          result = cut.create(new Person(VORNAME, NAME));
         }
 
         @Test
@@ -107,7 +107,7 @@ class PersonenServiceTest {
 
         @BeforeEach
         void act() {
-          result = cut.addAddress(ID, STRASSE, PLZ, ORT);
+          result = cut.addAddress(ID, new Address(STRASSE, PLZ, ORT));
         }
 
         @Test
@@ -158,7 +158,7 @@ class PersonenServiceTest {
 
       @BeforeEach
       void act() {
-        result = cut.addAddress(ID, STRASSE, PLZ, ORT);
+        result = cut.addAddress(ID, new Address(STRASSE, PLZ, ORT));
       }
 
       @Test
