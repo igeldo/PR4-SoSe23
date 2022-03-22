@@ -45,7 +45,7 @@ public class ShopService implements Shop {
   public Optional<Auftrag> placeOrder(int personId, String bestellNummer) {
     return personen.findById(personId)
         .filter(person -> !person.getAdresses().isEmpty())
-        .flatMap(person -> {
+        .map(person -> {
           var address = person.getAdresses().get(0);
           var auftrag = Auftrag.builder()
               .bestellNummer(bestellNummer)

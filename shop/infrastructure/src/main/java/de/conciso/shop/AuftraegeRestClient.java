@@ -1,10 +1,15 @@
 package de.conciso.shop;
 
+import static org.springframework.http.HttpStatus.OK;
+
 import java.util.Optional;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import reactor.core.publisher.Mono;
 
 @Component
 public class AuftraegeRestClient implements Auftraege {
@@ -16,13 +21,12 @@ public class AuftraegeRestClient implements Auftraege {
   }
 
   @Override
-  public Optional<Auftrag> create(Auftrag auftrag) {
+  public Auftrag create(Auftrag auftrag) {
     return auftrageWebClient.post()
         .accept(MediaType.APPLICATION_JSON)
         .bodyValue(AuftragRestClientRepresentation.from(auftrag))
         .exchangeToMono(clientResponse -> clientResponse.bodyToMono(AuftragRestClientRepresentation.class)
             .map(AuftragRestClientRepresentation::toAuftrag)
-            .map(Optional::of)
         )
         .block();
   }
@@ -32,10 +36,17 @@ public class AuftraegeRestClient implements Auftraege {
     return auftrageWebClient.get()
         .uri(uriBuilder -> uriBuilder.path("/{id}").build(id))
         .accept(MediaType.APPLICATION_JSON)
-        .exchangeToMono(clientResponse -> clientResponse.bodyToMono(AuftragRestClientRepresentation.class)
-            .map(AuftragRestClientRepresentation::toAuftrag)
-            .map(Optional::of)
-        )
+        .exchangeToMono(this::processResponse)
         .block();
+  }
+
+  private Mono<Optional<Auftrag>> processResponse(ClientResponse response) {
+    if (response.statusCode().equals(OK)) {
+      return response.bodyToMono(AuftragRestClientRepresentation.class)
+          .map(AuftragRestClientRepresentation::toAuftrag)
+          .map(Optional::of);
+    } else {
+      return Mono.just(Optional.empty());
+    }
   }
 }
