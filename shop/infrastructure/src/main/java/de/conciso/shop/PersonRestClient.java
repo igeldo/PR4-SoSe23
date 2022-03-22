@@ -1,10 +1,15 @@
 package de.conciso.shop;
 
+import static org.springframework.http.HttpStatus.OK;
+
 import java.util.Optional;
 
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
+import org.springframework.web.reactive.function.client.ClientResponse;
 import org.springframework.web.reactive.function.client.WebClient;
+
+import reactor.core.publisher.Mono;
 
 @Component
 public class PersonRestClient implements Personen {
@@ -32,10 +37,7 @@ public class PersonRestClient implements Personen {
         .uri(uriBuilder -> uriBuilder.path("/{id}/address").build(personId))
         .bodyValue(AddressRestClientRepresentation.from(address))
         .accept(MediaType.APPLICATION_JSON)
-        .exchangeToMono(clientResponse -> clientResponse.bodyToMono(PersonRestClientRepresentation.class)
-            .map(PersonRestClientRepresentation::toPerson)
-            .map(Optional::of)
-        )
+        .exchangeToMono(this::processResponse)
         .block();
   }
 
@@ -44,10 +46,18 @@ public class PersonRestClient implements Personen {
     return personenWebClient.get()
         .uri(uriBuilder -> uriBuilder.path("/{id}").build(id))
         .accept(MediaType.APPLICATION_JSON)
-        .exchangeToMono(clientResponse -> clientResponse.bodyToMono(PersonRestClientRepresentation.class)
-            .map(PersonRestClientRepresentation::toPerson)
-            .map(Optional::of)
-        )
+        .exchangeToMono(this::processResponse)
         .block();
   }
+
+  private Mono<Optional<Person>> processResponse(ClientResponse response) {
+    if (response.statusCode().equals(OK)) {
+      return response.bodyToMono(PersonRestClientRepresentation.class)
+          .map(PersonRestClientRepresentation::toPerson)
+          .map(Optional::of);
+    } else {
+      return Mono.just(Optional.empty());
+    }
+  }
+
 }
