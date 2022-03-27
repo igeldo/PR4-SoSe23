@@ -1,0 +1,12 @@
+{
+  "/api": {
+    "target": "http://localhost:8080",
+    "secure": false
+  },
+  "/auth": {
+    "target": "http://localhost:8081",
+    "secure": true,
+    "logLevel": "info",
+    "changeOrigin": true
+  }
+}
