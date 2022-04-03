@@ -3,11 +3,11 @@ package de.conciso.starter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class HelloWorld {
+public class HelloWorldApplication {
 
-  private static Logger logger = LogManager.getLogger(HelloWorld.class);
+  private static Logger logger = LogManager.getLogger(HelloWorldApplication.class);
 
-  public static void main(String[] args) {
+  public void run() {
     var greeter = new GreeterService();
     logger.info(greeter.greet("World"));
   }

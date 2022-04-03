@@ -11,10 +11,27 @@ import org.junit.jupiter.api.Test;
 @DisplayNameGeneration(ReplaceUnderscores.class)
 class GreeterServiceTest {
 
-  GreeterService cut = new GreeterService();
+  GreeterService cut;
+
+  @BeforeEach
+  void init() {
+    cut = new GreeterService();
+  }
+
+  @Test
+  void when_calling_greet_result_is_Hello_Georg() {
+    // Arrange
+    var name = "Georg";
+
+    // Act
+    var result = cut.greet(name);
+
+    // Assert
+    assertThat(result).isEqualTo("Hello Georg");
+  }
 
   @Nested
-  class Given_a_name_Georg {
+  class Given_name_is_Georg {
     String name;
 
     @BeforeEach
@@ -32,18 +49,29 @@ class GreeterServiceTest {
       }
 
       @Test
+      void then_result_is_not_null() {
+        assertThat(result).isNotNull();
+      }
+
+      @Test
+      void then_result_contains_Hello() {
+        assertThat(result).contains("Hello");
+      }
+
+      @Test
       void then_result_is_Hello_Georg() {
         assertThat(result).isEqualTo("Hello Georg");
       }
     }
   }
+
   @Nested
-  class Given_a_name_Burkhard {
+  class Given_name_is_null {
     String name;
 
     @BeforeEach
     void arrange() {
-      name = "Burkhard";
+      name = null;
     }
 
     @Nested
@@ -56,8 +84,18 @@ class GreeterServiceTest {
       }
 
       @Test
-      void then_result_is_Hello_Burkhard() {
-        assertThat(result).isEqualTo("Hello Burkhard");
+      void then_result_is_not_null() {
+        assertThat(result).isNotNull();
+      }
+
+      @Test
+      void then_result_contains_Hello() {
+        assertThat(result).contains("Hello");
+      }
+
+      @Test
+      void then_result_is_Hello_null() {
+        assertThat(result).isEqualTo("Hello null");
       }
     }
   }

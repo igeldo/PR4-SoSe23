@@ -32,7 +32,7 @@
                     <version>${exec-maven-plugin.version}</version>
                     <configuration>
                         <skip>true</skip>
-                        <mainClass>de.conciso.starter.HelloWorld</mainClass>
+                        <mainClass>de.conciso.starter.Starter</mainClass>
                     </configuration>
                 </plugin>
                 <plugin>
