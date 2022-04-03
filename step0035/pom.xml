@@ -21,7 +21,7 @@
                     <artifactId>exec-maven-plugin</artifactId>
                     <version>${exec-maven-plugin.version}</version>
                     <configuration>
-                        <mainClass>de.conciso.starter.HelloWorld</mainClass>
+                        <mainClass>de.conciso.starter.Starter</mainClass>
                     </configuration>
                 </plugin>
             </plugins>
