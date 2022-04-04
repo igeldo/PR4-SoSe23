@@ -1,12 +1,8 @@
 package de.conciso.starter;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayNameGeneration;
-import org.junit.jupiter.api.DisplayNameGenerator;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @DisplayNameGeneration(DisplayNameGenerator.ReplaceUnderscores.class)
 class HelloWorldControllerTest {
@@ -44,6 +40,21 @@ class HelloWorldControllerTest {
       @Test
       void then_result_contains_Hello() {
         assertThat(result).contains("Hello");
+      }
+
+      @Test
+      void then_result_is_Hello_Georg() {
+        assertThat(result).isEqualTo("Hello Georg");
+      }
+    }
+
+    @Nested
+    class When_calling_sayHelloWithPathVariable {
+      String result;
+
+      @BeforeEach
+      void act() {
+        result = cut.sayHelloWithPathVariable(name);
       }
 
       @Test
