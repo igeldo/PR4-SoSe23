@@ -2,7 +2,7 @@
 
 ## Step 130
 
-caöll other service (using WebClient)
+call other service (using WebClient)
 
 ### Prerequisites
 - Java 11 JDK
