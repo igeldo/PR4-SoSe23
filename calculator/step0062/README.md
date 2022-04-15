@@ -1,8 +1,8 @@
 # Java Starter #
 
-## Step 63
+## Step 62
 
-Calculator microservice: use JSON
+Calculator microservice with JSON
 
 ### Prerequisites
 - Java 11 JDK
