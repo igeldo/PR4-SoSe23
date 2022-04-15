@@ -3,6 +3,7 @@ import java.util.ResourceBundle;
 
 import org.jboss.resteasy.client.jaxrs.ResteasyWebTarget;
 
+import de.conciso.client.calculator.CalculatorRequestRepresentation;
 import de.conciso.client.calculator.CalculatorService;
 import jakarta.ws.rs.client.ClientBuilder;
 import javafx.fxml.FXML;
@@ -53,9 +54,11 @@ public class Controller implements Initializable {
     var target = (ResteasyWebTarget) ClientBuilder.newClient()
         .target("http://localhost:8080");
     var service = target.proxy(CalculatorService.class);
-    var result = service.calculate(m.getFirstNumber(), m.getSecondNumber(), m.getCurrentOperator());
+    var request = new CalculatorRequestRepresentation(m.getFirstNumber(), m.getSecondNumber(), m.getCurrentOperator());
+    var response = service.calculate(request);
+    var result = response.getResult();
 
-    m.setResult(Double.parseDouble(result));
+    m.setResult(result);
     resultNumber.setText(String.valueOf(m.getResult()));
   }
 }
