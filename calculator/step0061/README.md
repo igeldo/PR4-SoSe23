@@ -1,6 +1,6 @@
 # Java Starter #
 
-## Step 62
+## Step 61
 
 Calculator microservice
 
