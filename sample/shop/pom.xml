@@ -32,6 +32,7 @@
         <docker-image.keycloak>quay.io/keycloak/keycloak:18.0.2-legacy</docker-image.keycloak>
         <keycloak-adapter.version>16.1.1</keycloak-adapter.version>
         <lombok.version>1.18.22</lombok.version>
+        <jgiven-junit5.version>1.2.0</jgiven-junit5.version>
     </properties>
 
     <build>
@@ -89,6 +90,7 @@
                 <artifactId>docker</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <!-- third party -->
             <dependency>
                 <groupId>org.keycloak.bom</groupId>
                 <artifactId>keycloak-adapter-bom</artifactId>
@@ -101,6 +103,11 @@
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
                 <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.tngtech.jgiven</groupId>
+                <artifactId>jgiven-junit5</artifactId>
+                <version>${jgiven-junit5.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -123,6 +130,10 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.tngtech.jgiven</groupId>
+            <artifactId>jgiven-junit5</artifactId>
         </dependency>
     </dependencies>
 
