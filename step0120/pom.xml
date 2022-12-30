@@ -30,8 +30,8 @@
         <docker-maven-plugin.version>0.38.1</docker-maven-plugin.version>
         <docker-image.openjdk>openjdk:11.0.13-slim-bullseye</docker-image.openjdk>
         <docker-image.postgres>postgres:11.14-bullseye</docker-image.postgres>
-        <docker-image.keycloak>jboss/keycloak:16.1.0</docker-image.keycloak>
-        <keycloak-adapter.version>16.1.0</keycloak-adapter.version>
+        <docker-image.keycloak>quay.io/keycloak/keycloak:18.0.2-legacy</docker-image.keycloak>
+        <keycloak-adapter.version>16.1.1</keycloak-adapter.version>
         <lombok.version>1.18.22</lombok.version>
     </properties>
 
