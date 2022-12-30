@@ -24,14 +24,13 @@
     </modules>
 
     <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <java.version>11</java.version>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <java.version>17</java.version>
         <docker-maven-plugin.version>0.38.1</docker-maven-plugin.version>
-        <docker-image.openjdk>openjdk:11.0.13-slim-bullseye</docker-image.openjdk>
-        <docker-image.postgres>postgres:11.14-bullseye</docker-image.postgres>
-        <docker-image.keycloak>jboss/keycloak:16.1.0</docker-image.keycloak>
-        <keycloak-adapter.version>16.1.0</keycloak-adapter.version>
+        <docker-image.openjdk>openjdk:17-slim-bullseye</docker-image.openjdk>
+        <docker-image.postgres>postgres:15.1-bullseye</docker-image.postgres>
+        <keycloak-adapter.version>16.1.1</keycloak-adapter.version>
         <lombok.version>1.18.22</lombok.version>
     </properties>
 
