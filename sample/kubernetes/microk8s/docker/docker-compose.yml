@@ -1,0 +1,23 @@
+services:
+  shop:
+    container_name: shop
+    image: shop:latest
+    ports:
+      - 192.168.64.5:8080:8080
+  person:
+    container_name: person
+    image: person:latest
+    ports:
+      - 8083:8080
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5434/person
+  auftrag:
+    container_name: auftrag
+    image: auftrag:latest
+    depends_on:
+      - db-auftrag
+      - idm
+    ports:
+      - 8082:8080
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5433/auftrag
