@@ -8,17 +8,6 @@ services:
       - POSTGRES_USER=person
       - POSTGRES_PASSWORD=passGeheim
       - POSTGRES_DB=person
-  idm:
-    container_name: idm
-    image: jboss/keycloak:16.1.0
-    ports:
-      - 8081:8080
-    volumes:
-      - ./keycloak:/tmp/keycloak
-    environment:
-      - KEYCLOAK_USER=admin
-      - KEYCLOAK_PASSWORD=passKeycloakAdmin
-      - KEYCLOAK_IMPORT=/tmp/keycloak/java-starter-realm.json
   person:
     container_name: person
     image: person:latest
