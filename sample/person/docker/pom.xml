@@ -24,7 +24,7 @@
                     <images>
                         <image>
                             <alias>person</alias>
-                            <name>person:latest</name>
+                            <name>person:local</name>
                             <build>
                                 <from>${docker-image.openjdk}</from>
                                 <ports>

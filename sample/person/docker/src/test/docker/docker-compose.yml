@@ -10,7 +10,7 @@ services:
       - POSTGRES_DB=person
   person:
     container_name: person
-    image: person:latest
+    image: person:local
     depends_on:
       - db-person
       - idm
