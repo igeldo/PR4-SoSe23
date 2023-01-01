@@ -3,7 +3,7 @@ services:
     container_name: idm
     image: quay.io/keycloak/keycloak:18.0.2-legacy
     ports:
-      - 192.168.64.9:8081:8080
+      - 192.168.64.9:8080:8080
     volumes:
       - ./keycloak:/tmp/keycloak
     environment:
