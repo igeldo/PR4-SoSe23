@@ -18,4 +18,20 @@ spec:
         image: person:local
         imagePullPolicy: Never
         ports:
-        - containerPort: 80
+        - containerPort: 8080
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:postgresql://db:5434/person"
+      - name: auftrag
+        image: auftrag:local
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 8080
+        env:
+          - name: SPRING_DATASOURCE_URL
+            value: "jdbc:postgresql://db:5433/auftrag"
+      - name: shop
+        image: shop:local
+        imagePullPolicy: Never
+        ports:
+          - containerPort: 8080
