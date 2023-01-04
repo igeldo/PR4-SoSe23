@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "11f2c49c-9cc3-411e-8cee-c66b45d106e0",
+		"_postman_id": "f96157b3-9026-4987-a769-e096d9f1edea",
 		"name": "shop",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -36,11 +36,11 @@
 					}
 				},
 				"url": {
-					"raw": "microk8s:8080/api/shop/person",
+					"raw": "microk8s:80/api/shop/person",
 					"host": [
 						"microk8s"
 					],
-					"port": "8080",
+					"port": "80",
 					"path": [
 						"api",
 						"shop",
@@ -81,11 +81,11 @@
 					}
 				},
 				"url": {
-					"raw": "microk8s:8080/api/shop/person/1/address",
+					"raw": "microk8s:80/api/shop/person/1/address",
 					"host": [
 						"microk8s"
 					],
-					"port": "8080",
+					"port": "80",
 					"path": [
 						"api",
 						"shop",
@@ -119,11 +119,11 @@
 					}
 				],
 				"url": {
-					"raw": "microk8s:8080/api/shop/person/1",
+					"raw": "microk8s:80/api/shop/person/1",
 					"host": [
 						"microk8s"
 					],
-					"port": "8080",
+					"port": "80",
 					"path": [
 						"api",
 						"shop",
@@ -165,11 +165,11 @@
 					}
 				},
 				"url": {
-					"raw": "microk8s:8080/api/shop/auftrag",
+					"raw": "microk8s:80/api/shop/auftrag",
 					"host": [
 						"microk8s"
 					],
-					"port": "8080",
+					"port": "80",
 					"path": [
 						"api",
 						"shop",
@@ -201,11 +201,11 @@
 					}
 				],
 				"url": {
-					"raw": "microk8s:8080/api/shop/auftrag/1",
+					"raw": "microk8s:80/api/shop/auftrag/1",
 					"host": [
 						"microk8s"
 					],
-					"port": "8080",
+					"port": "80",
 					"path": [
 						"api",
 						"shop",
