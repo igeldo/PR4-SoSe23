@@ -1,0 +1,6 @@
+https://stackoverflow.com/questions/46266006/how-do-i-redeploy-everything-in-kubernetes-after-updating-a-dockerfile
+https://www.eclipse.org/jkube/docs/kubernetes-maven-plugin/
+https://github.com/KevinFhDortmund/k8s_Docker_Java/
+https://spring.io/guides/gs/spring-boot-docker/
+https://microk8s.io/docs/registry-images
+https://ubuntu.com/tutorials/install-a-local-kubernetes-with-microk8s#4-accessing-the-kubernetes-dashboard
