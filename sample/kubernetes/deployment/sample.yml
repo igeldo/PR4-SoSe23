@@ -10,9 +10,9 @@ spec:
       image: 'person:local'
       env:
       - name: SPRING_DATASOURCE_URL
-        value: "jdbc:postgresql://192.168.64.9:5434/person"
+        value: "jdbc:postgresql://replace_me:5434/person"
       - name: KEYCLOAK_AUTH_SERVER_URL
-        value: "http://192.168.64.9:8080/auth"
+        value: "http://replace_me:8080/auth"
 ---
 kind: Service
 apiVersion: v1
@@ -36,9 +36,9 @@ spec:
       image: 'auftrag:local'
       env:
       - name: SPRING_DATASOURCE_URL
-        value: "jdbc:postgresql://192.168.64.9:5433/auftrag"
+        value: "jdbc:postgresql://replace_me:5433/auftrag"
       - name: KEYCLOAK_AUTH_SERVER_URL
-        value: "http://192.168.64.9:8080/auth"
+        value: "http://replace_me:8080/auth"
 ---
 kind: Service
 apiVersion: v1
@@ -62,7 +62,7 @@ spec:
       image: 'shop:local'
       env:
       - name: KEYCLOAK_AUTH_SERVER_URL
-        value: "http://192.168.64.9:8080/auth"
+        value: "http://replace_me:8080/auth"
 ---
 kind: Service
 apiVersion: v1

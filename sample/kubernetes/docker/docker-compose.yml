@@ -3,7 +3,7 @@ services:
     container_name: idm
     image: quay.io/keycloak/keycloak:18.0.2-legacy
     ports:
-      - 192.168.64.9:8080:8080
+      - replace_me:8080:8080
     volumes:
       - ./keycloak:/tmp/keycloak
     environment:
@@ -14,7 +14,7 @@ services:
     container_name: db-person
     image: postgres:15.1-bullseye
     ports:
-      - 192.168.64.9:5434:5432
+      - replace_me:5434:5432
     environment:
       - POSTGRES_USER=person
       - POSTGRES_PASSWORD=passGeheim
@@ -23,7 +23,7 @@ services:
     container_name: db-auftrag
     image: postgres:15.1-bullseye
     ports:
-      - 192.168.64.9:5433:5432
+      - replace_me:5433:5432
     environment:
       - POSTGRES_USER=auftrag
       - POSTGRES_PASSWORD=passGeheim
