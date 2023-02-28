@@ -10,7 +10,7 @@ services:
       - POSTGRES_DB=auftrag
   auftrag:
     container_name: auftrag
-    image: auftrag:latest
+    image: auftrag:local
     depends_on:
       - db-auftrag
       - idm

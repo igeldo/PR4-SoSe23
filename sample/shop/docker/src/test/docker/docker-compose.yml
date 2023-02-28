@@ -12,7 +12,7 @@ services:
       - KEYCLOAK_IMPORT=/tmp/keycloak/java-starter-realm.json
   shop:
     container_name: shop
-    image: shop:latest
+    image: shop:local
     depends_on:
       - idm
     ports:

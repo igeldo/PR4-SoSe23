@@ -1,0 +1,107 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: person-app
+  labels:
+    app: person
+spec:
+  containers:
+    - name: person-app
+      image: 'person:local'
+      env:
+      - name: SPRING_DATASOURCE_URL
+        value: "jdbc:postgresql://replace_me:5434/person"
+      - name: KEYCLOAK_AUTH_SERVER_URL
+        value: "http://replace_me:8080/auth"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: person
+spec:
+  selector:
+    app: person
+  ports:
+    - port: 8080
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: auftrag-app
+  labels:
+    app: auftrag
+spec:
+  containers:
+    - name: auftrag-app
+      image: 'auftrag:local'
+      env:
+      - name: SPRING_DATASOURCE_URL
+        value: "jdbc:postgresql://replace_me:5433/auftrag"
+      - name: KEYCLOAK_AUTH_SERVER_URL
+        value: "http://replace_me:8080/auth"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: auftrag
+spec:
+  selector:
+    app: auftrag
+  ports:
+    - port: 8080
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: shop-app
+  labels:
+    app: shop
+spec:
+  containers:
+    - name: shop-app
+      image: 'shop:local'
+      env:
+      - name: KEYCLOAK_AUTH_SERVER_URL
+        value: "http://replace_me:8080/auth"
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: shop
+spec:
+  selector:
+    app: shop
+  ports:
+    - port: 8080
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sample-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: /api/shop
+            backend:
+              service:
+                name: shop
+                port:
+                  number: 8080
+          - pathType: Prefix
+            path: /api/person
+            backend:
+              service:
+                name: person
+                port:
+                  number: 8080
+          - pathType: Prefix
+            path: /api/auftrag
+            backend:
+              service:
+                name: auftrag
+                port:
+                  number: 8080
+---
+
