@@ -1,18 +1,27 @@
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: person-app
   labels:
     app: person
 spec:
-  containers:
-    - name: person-app
-      image: 'person:local'
-      env:
-      - name: SPRING_DATASOURCE_URL
-        value: "jdbc:postgresql://replace_me:5434/person"
-      - name: KEYCLOAK_AUTH_SERVER_URL
-        value: "http://replace_me:8080/auth"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: person
+  template:
+    metadata:
+      labels:
+        app: person
+    spec:
+      containers:
+      - name: person-app
+        image: 'person:local'
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:postgresql://replace_me:5434/person"
+        - name: KEYCLOAK_AUTH_SERVER_URL
+          value: "http://replace_me:8080/auth"
 ---
 kind: Service
 apiVersion: v1
@@ -24,21 +33,30 @@ spec:
   ports:
     - port: 8080
 ---
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: auftrag-app
   labels:
     app: auftrag
 spec:
-  containers:
-    - name: auftrag-app
-      image: 'auftrag:local'
-      env:
-      - name: SPRING_DATASOURCE_URL
-        value: "jdbc:postgresql://replace_me:5433/auftrag"
-      - name: KEYCLOAK_AUTH_SERVER_URL
-        value: "http://replace_me:8080/auth"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: auftrag
+  template:
+    metadata:
+      labels:
+        app: auftrag
+    spec:
+      containers:
+      - name: auftrag-app
+        image: 'auftrag:local'
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: "jdbc:postgresql://replace_me:5433/auftrag"
+        - name: KEYCLOAK_AUTH_SERVER_URL
+          value: "http://replace_me:8080/auth"
 ---
 kind: Service
 apiVersion: v1
@@ -50,19 +68,28 @@ spec:
   ports:
     - port: 8080
 ---
-kind: Pod
-apiVersion: v1
+kind: Deployment
+apiVersion: apps/v1
 metadata:
   name: shop-app
   labels:
     app: shop
 spec:
-  containers:
-    - name: shop-app
-      image: 'shop:local'
-      env:
-      - name: KEYCLOAK_AUTH_SERVER_URL
-        value: "http://replace_me:8080/auth"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: shop
+  template:
+    metadata:
+      labels:
+        app: shop
+    spec:
+      containers:
+      - name: shop-app
+        image: 'shop:local'
+        env:
+        - name: KEYCLOAK_AUTH_SERVER_URL
+          value: "http://replace_me:8080/auth"
 ---
 kind: Service
 apiVersion: v1
@@ -103,5 +130,3 @@ spec:
                 name: auftrag
                 port:
                   number: 8080
----
-
