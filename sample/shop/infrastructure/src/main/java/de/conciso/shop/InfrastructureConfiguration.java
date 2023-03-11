@@ -1,5 +1,6 @@
 package de.conciso.shop;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -8,16 +9,16 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class InfrastructureConfiguration {
 
   @Bean
-  public WebClient auftrageWebClient() {
+  public WebClient auftrageWebClient(@Value("${service.auftrag.url}") String url) {
     return WebClient.builder()
-        .baseUrl("http://auftrag:8080/api/auftrag")
+        .baseUrl(url)
         .build();
   }
 
   @Bean
-  public WebClient personenWebClient() {
+  public WebClient personenWebClient(@Value("${service.person.url}") String url) {
     return WebClient.builder()
-        .baseUrl("http://person:8080/api/person")
+        .baseUrl(url)
         .build();
   }
 }
