@@ -19,9 +19,9 @@ spec:
         image: 'master:32000/person:latest'
         env:
         - name: SPRING_DATASOURCE_URL
-          value: 'jdbc:postgresql://replace_me:5434/person'
+          value: 'jdbc:postgresql://db:5434/person'
         - name: KEYCLOAK_AUTH_SERVER_URL
-          value: 'http://replace_me:8080/auth'
+          value: 'http://idm:8080/auth'
 ---
 kind: Service
 apiVersion: v1
@@ -54,9 +54,9 @@ spec:
         image: 'master:32000/auftrag:latest'
         env:
         - name: SPRING_DATASOURCE_URL
-          value: 'jdbc:postgresql://replace_me:5433/auftrag'
+          value: 'jdbc:postgresql://db:5433/auftrag'
         - name: KEYCLOAK_AUTH_SERVER_URL
-          value: 'http://replace_me:8080/auth'
+          value: 'http://idm:8080/auth'
 ---
 kind: Service
 apiVersion: v1
@@ -89,7 +89,7 @@ spec:
         image: 'master:32000/shop:latest'
         env:
         - name: KEYCLOAK_AUTH_SERVER_URL
-          value: 'http://replace_me:8080/auth'
+          value: 'http://idm:8080/auth'
 ---
 kind: Service
 apiVersion: v1
