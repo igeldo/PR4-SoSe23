@@ -29,11 +29,12 @@ public class InfrastructureConfiguration {
     }
 
     private static Mono<ClientResponse> setAuthorizationToken(ClientRequest request, ExchangeFunction next) {
-        return Mono.deferContextual(contextView -> {
-            contextView.getOrEmpty("authorizationToken")
-                    .map(String.class::cast)
-                    .ifPresent(token -> request.headers().add("Authorization", token));
-            return next.exchange(request);
-        });
+        return Mono.deferContextual(contextView -> next.exchange(contextView.getOrEmpty("authorizationToken")
+                .map(String.class::cast)
+                .map(token -> ClientRequest.from(request)
+                        .header("Authorization", token)
+                        .build()
+                )
+                .orElse(request)));
     }
 }
