@@ -24,7 +24,7 @@
                     <images>
                         <image>
                             <alias>auftrag</alias>
-                            <name>auftrag:local</name>
+                            <name>master:32000/auftrag:latest</name>
                             <build>
                                 <from>${docker-image.openjdk}</from>
                                 <ports>
@@ -83,9 +83,16 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>fabric8</id>
+                        <id>docker-build</id>
                         <goals>
                             <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>docker-push</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>push</goal>
                         </goals>
                     </execution>
                 </executions>

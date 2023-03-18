@@ -24,7 +24,7 @@
                     <images>
                         <image>
                             <alias>shop</alias>
-                            <name>shop:local</name>
+                            <name>master:32000/shop:latest</name>
                             <build>
                                 <from>${docker-image.openjdk}</from>
                                 <ports>
@@ -88,9 +88,16 @@
                 </configuration>
                 <executions>
                     <execution>
-                        <id>fabric8</id>
+                        <id>docker-build</id>
                         <goals>
                             <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>docker-push</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>push</goal>
                         </goals>
                     </execution>
                 </executions>
