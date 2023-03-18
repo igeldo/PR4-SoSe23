@@ -13,41 +13,41 @@ import org.springframework.security.web.authentication.session.SessionAuthentica
 @KeycloakConfiguration
 public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
 
-  /**
-   * Registers the KeycloakAuthenticationProvider with the authentication manager.
-   */
-  @Autowired
-  public void configureGlobal(AuthenticationManagerBuilder auth) {
-    auth.authenticationProvider(keycloakAuthenticationProvider());
-  }
+    /**
+     * Registers the KeycloakAuthenticationProvider with the authentication manager.
+     */
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) {
+        auth.authenticationProvider(keycloakAuthenticationProvider());
+    }
 
-  /*
-   * Defines the session authentication strategy.
-   *
-   * https://www.keycloak.org/docs/latest/securing_apps/#_spring_security_adapter
-   * You must provide a session authentication strategy bean which should be of type
-   * RegisterSessionAuthenticationStrategy for public or confidential applications and
-   * NullAuthenticatedSessionStrategy for bearer-only applications.
-   */
-  @Bean
-  @Override
-  protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
-    return new NullAuthenticatedSessionStrategy();
-  }
+    /*
+     * Defines the session authentication strategy.
+     *
+     * https://www.keycloak.org/docs/latest/securing_apps/#_spring_security_adapter
+     * You must provide a session authentication strategy bean which should be of type
+     * RegisterSessionAuthenticationStrategy for public or confidential applications and
+     * NullAuthenticatedSessionStrategy for bearer-only applications.
+     */
+    @Bean
+    @Override
+    protected SessionAuthenticationStrategy sessionAuthenticationStrategy() {
+        return new NullAuthenticatedSessionStrategy();
+    }
 
-  @Override
-  protected void configure(HttpSecurity httpSecurity) throws Exception {
-    super.configure(httpSecurity);
+    @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        super.configure(httpSecurity);
 
-    httpSecurity
-        .csrf().disable() // tokens are immune to csrf
-        .httpBasic().disable() // not relevant so disable it
-        .formLogin().disable() // not relevant so disable it
-        // setting this so the authentication provider will always reevaluate the token
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        .authorizeRequests()
-        .anyRequest().permitAll();
-    // httpSecurity.authorizeRequests().antMatchers("/api/**").authenticated();
-  }
+        httpSecurity
+                .csrf().disable() // tokens are immune to csrf
+                .httpBasic().disable() // not relevant so disable it
+                .formLogin().disable() // not relevant so disable it
+                // setting this so the authentication provider will always reevaluate the token
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authorizeRequests()
+                .anyRequest().permitAll();
+        httpSecurity.authorizeRequests().antMatchers("/api/**").authenticated();
+    }
 }
