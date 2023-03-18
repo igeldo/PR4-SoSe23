@@ -44,9 +44,7 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
                 .httpBasic().disable() // not relevant so disable it
                 .formLogin().disable() // not relevant so disable it
                 // setting this so the authentication provider will always reevaluate the token
-                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .authorizeRequests().anyRequest().permitAll();
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         httpSecurity.authorizeRequests().antMatchers("/api/**").authenticated();
     }
 }
