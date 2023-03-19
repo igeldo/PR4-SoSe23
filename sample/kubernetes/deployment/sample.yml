@@ -5,7 +5,7 @@ metadata:
   labels:
     app: person
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: person
@@ -15,13 +15,18 @@ spec:
         app: person
     spec:
       containers:
-      - name: person-app
+      - name: person-pod
         image: 'master:32000/person:latest'
         env:
         - name: SPRING_DATASOURCE_URL
           value: 'jdbc:postgresql://db:5434/person'
         - name: KEYCLOAK_AUTH_SERVER_URL
           value: 'http://idm:8080/auth'
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
 ---
 kind: Service
 apiVersion: v1
@@ -40,7 +45,7 @@ metadata:
   labels:
     app: auftrag
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: auftrag
@@ -50,13 +55,18 @@ spec:
         app: auftrag
     spec:
       containers:
-      - name: auftrag-app
+      - name: auftrag-pod
         image: 'master:32000/auftrag:latest'
         env:
         - name: SPRING_DATASOURCE_URL
           value: 'jdbc:postgresql://db:5433/auftrag'
         - name: KEYCLOAK_AUTH_SERVER_URL
           value: 'http://idm:8080/auth'
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
 ---
 kind: Service
 apiVersion: v1
@@ -75,7 +85,7 @@ metadata:
   labels:
     app: shop
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: shop
@@ -85,11 +95,16 @@ spec:
         app: shop
     spec:
       containers:
-      - name: shop-app
+      - name: shop-pod
         image: 'master:32000/shop:latest'
         env:
         - name: KEYCLOAK_AUTH_SERVER_URL
           value: 'http://idm:8080/auth'
+        resources:
+          limits:
+            cpu: 500m
+          requests:
+            cpu: 200m
 ---
 kind: Service
 apiVersion: v1
