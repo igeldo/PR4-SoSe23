@@ -1,7 +1,7 @@
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: person-hpa
+  name: person
 spec:
   minReplicas: 1
   maxReplicas: 3
@@ -15,12 +15,12 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: person-app
+    name: person
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: auftrag-hpa
+  name: auftrag
 spec:
   minReplicas: 1
   maxReplicas: 3
@@ -34,12 +34,12 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: auftrag-app
+    name: auftrag
 ---
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata:
-  name: shop-hpa
+  name: shop
 spec:
   minReplicas: 1
   maxReplicas: 3
@@ -53,4 +53,4 @@ spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: shop-app
+    name: shop
