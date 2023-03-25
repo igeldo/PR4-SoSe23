@@ -1,7 +1,7 @@
 services:
   db:
     container_name: db
-    image: postgres:11.14-bullseye
+    image: postgres:15.2-alpine
     ports:
       - 5432:5432
     environment:
@@ -10,7 +10,7 @@ services:
       - POSTGRES_DB=person
   idm:
     container_name: idm
-    image: quay.io/keycloak/keycloak:18.0.2-legacy
+    image: quay.io/keycloak/keycloak:19.0.3-legacy
     ports:
       - 8081:8080
     volumes:

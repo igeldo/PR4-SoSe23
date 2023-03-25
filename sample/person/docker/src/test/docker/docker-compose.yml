@@ -1,7 +1,7 @@
 services:
   db-person:
     container_name: db-person
-    image: postgres:11.14-bullseye
+    image: postgres:15.2-alpine
     ports:
       - 5434:5432
     environment:

@@ -1,7 +1,7 @@
 services:
   idm:
     container_name: idm
-    image: quay.io/keycloak/keycloak:18.0.2-legacy
+    image: quay.io/keycloak/keycloak:19.0.3-legacy
     ports:
       - 8081:8080
     volumes:
