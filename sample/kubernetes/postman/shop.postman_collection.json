@@ -1,221 +1,10 @@
 {
 	"info": {
-		"_postman_id": "76e044ac-5cb7-47c9-a47f-bcdd362f545a",
+		"_postman_id": "04848ed0-8700-4c92-9d72-8c09d332319d",
 		"name": "shop",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
-		{
-			"name": "Create Person",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {
-					"accept": true
-				}
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
-						"type": "default"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"vorname\": \"Georg\",\n    \"name\": \"Pietrek\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "master:80/api/shop/person",
-					"host": [
-						"master"
-					],
-					"port": "80",
-					"path": [
-						"api",
-						"shop",
-						"person"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Create Address",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {
-					"accept": true
-				}
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
-						"type": "default"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"strasse\": \"Platvoets Kamp 7\",\n    \"plz\": 59387,\n    \"ort\": \"Ascheberg\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "master:80/api/shop/person/1/address",
-					"host": [
-						"master"
-					],
-					"port": "80",
-					"path": [
-						"api",
-						"shop",
-						"person",
-						"1",
-						"address"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Find Person",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {
-					"accept": true
-				}
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
-						"type": "default"
-					}
-				],
-				"url": {
-					"raw": "master:80/api/shop/person/1",
-					"host": [
-						"master"
-					],
-					"port": "80",
-					"path": [
-						"api",
-						"shop",
-						"person",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Place Order",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {
-					"accept": true
-				}
-			},
-			"request": {
-				"method": "POST",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
-						"type": "default"
-					}
-				],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"personId\": 1,\n    \"bestellNummer\": \"4711\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "master:80/api/shop/auftrag",
-					"host": [
-						"master"
-					],
-					"port": "80",
-					"path": [
-						"api",
-						"shop",
-						"auftrag"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Find Order",
-			"protocolProfileBehavior": {
-				"disabledSystemHeaders": {
-					"accept": true
-				}
-			},
-			"request": {
-				"method": "GET",
-				"header": [
-					{
-						"key": "Accept",
-						"value": "application/json",
-						"type": "text"
-					},
-					{
-						"key": "Authorization",
-						"value": "Bearer {{access_token}}",
-						"type": "default"
-					}
-				],
-				"url": {
-					"raw": "master:80/api/shop/auftrag/1",
-					"host": [
-						"master"
-					],
-					"port": "80",
-					"path": [
-						"api",
-						"shop",
-						"auftrag",
-						"1"
-					]
-				}
-			},
-			"response": []
-		},
 		{
 			"name": "Login",
 			"event": [
@@ -260,11 +49,11 @@
 					]
 				},
 				"url": {
-					"raw": "idm:8080/auth/realms/java-starter-realm/protocol/openid-connect/token",
+					"raw": "{{host.idm}}:{{port.idm}}/auth/realms/java-starter-realm/protocol/openid-connect/token",
 					"host": [
-						"idm"
+						"{{host.idm}}"
 					],
-					"port": "8080",
+					"port": "{{port.idm}}",
 					"path": [
 						"auth",
 						"realms",
@@ -272,6 +61,252 @@
 						"protocol",
 						"openid-connect",
 						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.clearGlobalVariable(\"personId\");",
+							"postman.setGlobalVariable(\"personId\", data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vorname\": \"{{$randomFirstName}}\",\n    \"name\": \"{{$randomLastName}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/shop/person",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"shop",
+						"person"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Address",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"strasse\": \"{{$randomStreetAddress}}\",\n    \"plz\": {{$randomInt}},\n    \"ort\": \"{{$randomCity}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/shop/person/{{personId}}/address",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"shop",
+						"person",
+						"{{personId}}",
+						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Person",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/shop/person/{{personId}}",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"shop",
+						"person",
+						"{{personId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place Order",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.clearGlobalVariable(\"orderId\");",
+							"postman.setGlobalVariable(\"orderId\", data.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"personId\": {{personId}},\n    \"bestellNummer\": \"{{$randomInt}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/shop/auftrag",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"shop",
+						"auftrag"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Order",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/shop/auftrag/{{orderId}}",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"shop",
+						"auftrag",
+						"{{orderId}}"
 					]
 				}
 			},
