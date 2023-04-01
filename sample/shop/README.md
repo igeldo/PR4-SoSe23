@@ -11,7 +11,7 @@
 ### Build and run
 
 ```shell
-mvn clean install docker:run
+mvn clean install docker:run -Pdocker
 ```
 
 ### Keycloak configuration

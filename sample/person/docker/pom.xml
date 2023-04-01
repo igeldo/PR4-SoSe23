@@ -11,6 +11,41 @@
 
     <artifactId>docker</artifactId>
 
+    <profiles>
+        <profile>
+            <id>docker</id>
+            <properties>
+                <docker-image.app>person:latest</docker-image.app>
+            </properties>
+        </profile>
+        <profile>
+            <id>kubernetes</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <docker-image.app>master:32000/person:latest</docker-image.app>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>io.fabric8</groupId>
+                        <artifactId>docker-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>docker-push</id>
+                                <phase>install</phase>
+                                <goals>
+                                    <goal>push</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
     <build>
         <plugins>
             <plugin>
@@ -24,7 +59,7 @@
                     <images>
                         <image>
                             <alias>person</alias>
-                            <name>master:32000/person:latest</name>
+                            <name>${docker-image.app}</name>
                             <build>
                                 <from>${docker-image.openjdk}</from>
                                 <ports>
@@ -86,13 +121,6 @@
                         <id>docker-build</id>
                         <goals>
                             <goal>build</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>docker-push</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>push</goal>
                         </goals>
                     </execution>
                 </executions>
