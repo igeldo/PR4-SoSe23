@@ -5,7 +5,7 @@
 Unit-Tests: Motivation von Dependency Injection und Mocking
 
 ### Prerequisites
-- Java 11 JDK
+- Java 17 JDK
 - Maven
 
 ### Build and run

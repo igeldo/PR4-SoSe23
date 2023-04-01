@@ -5,7 +5,7 @@
 Secure service with Spring Security and Keycloak
 
 ### Prerequisites
-- Java 11 JDK
+- Java 17 JDK
 - Maven
 - Docker
 - Postman

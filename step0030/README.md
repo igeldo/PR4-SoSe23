@@ -5,7 +5,7 @@
 Logging mit Log4j
 
 ### Prerequisites
-- Java 11 JDK
+- Java 17 JDK
 - Maven
 
 ### Build and run

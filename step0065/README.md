@@ -7,7 +7,7 @@ Controller mit Spring Boot
 Nutzung von Pfad-Variablen
 
 ### Prerequisites
-- Java 11 JDK
+- Java 17 JDK
 - Maven
 
 ### Build and run
