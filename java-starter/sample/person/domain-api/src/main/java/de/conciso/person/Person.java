@@ -73,6 +73,22 @@ public class Person {
     addresses.add(address);
   }
 
+  public void changeLastAddress(Address address) {
+    addresses.remove(addresses.size() - 1);
+    addresses.add(address);
+  }
+
+  public void changeAddress(Address address, int addressIndex) {
+    addresses.remove(addressIndex);
+    addresses.add(address);
+  }
+
+
+
+
+
+
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;

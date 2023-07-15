@@ -14,15 +14,15 @@
     <profiles>
         <profile>
             <id>docker</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
             <properties>
                 <docker-image.app>person:latest</docker-image.app>
             </properties>
         </profile>
         <profile>
             <id>kubernetes</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
             <properties>
                 <docker-image.app>master:32000/person:latest</docker-image.app>
             </properties>

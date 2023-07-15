@@ -1,0 +1,551 @@
+{
+	"info": {
+		"_postman_id": "acca02fc-4eaa-4305-a25b-f97e573d587a",
+		"name": "shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27810308"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.clearGlobalVariable(\"access_token\");",
+							"postman.setGlobalVariable(\"access_token\", data.access_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_id",
+							"value": "java-starter-client",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "java-starter-user",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "passKeycloakUser",
+							"type": "text"
+						},
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{host.idm}}:{{port.idm}}/auth/realms/java-starter-realm/protocol/openid-connect/token",
+					"host": [
+						"{{host.idm}}"
+					],
+					"port": "{{port.idm}}",
+					"path": [
+						"auth",
+						"realms",
+						"java-starter-realm",
+						"protocol",
+						"openid-connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Person",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var data = JSON.parse(responseBody);",
+							"postman.clearGlobalVariable(\"personId\");",
+							"postman.setGlobalVariable(\"personId\", data.id);",
+							"postman.clearGlobalVariable(\"personName\");",
+							"postman.setGlobalVariable(\"personName\", data.name);",
+							"postman.clearGlobalVariable(\"personVorname\");",
+							"postman.setGlobalVariable(\"personVorname\", data.vorname);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"vorname\": \"{{$randomFirstName}}\",\n    \"name\": \"{{$randomLastName}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/person/create/",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"person",
+						"create",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Address",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"strasse\": \"{{$randomStreetAddress}}\",\n    \"plz\": {{$randomInt}},\n    \"ort\": \"{{$randomCity}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/person/{{personId}}/address",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"person",
+						"{{personId}}",
+						"address"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Last Address",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"strasse\": \"{{$randomStreetAddress}}\",\n    \"plz\": {{$randomInt}},\n    \"ort\": \"{{$randomCity}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/person/{{personId}}/changeLastAddress",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"person",
+						"{{personId}}",
+						"changeLastAddress"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Address by ID",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"strasse\": \"{{$randomStreetAddress}}\",\n    \"plz\": {{$randomInt}},\n    \"ort\": \"{{$randomCity}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/person/{{personId}}/changeAddress/0",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"person",
+						"{{personId}}",
+						"changeAddress",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Name by ID",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"strasse\": \"{{$randomStreetAddress}}\",\n    \"plz\": {{$randomInt}},\n    \"ort\": \"{{$randomCity}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/person/{{personId}}/changeName/Guenther",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"person",
+						"{{personId}}",
+						"changeName",
+						"Guenther"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change Vorname by ID",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"strasse\": \"{{$randomStreetAddress}}\",\n    \"plz\": {{$randomInt}},\n    \"ort\": \"{{$randomCity}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/person/{{personId}}/changeVorname/Guenther",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"person",
+						"{{personId}}",
+						"changeVorname",
+						"Guenther"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Person by ID",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/person/findId/{{personId}}",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"person",
+						"findId",
+						"{{personId}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find Person by Name",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/person/findName/{{personName}}",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"person",
+						"findName",
+						"{{personName}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find All Person",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/person/all",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"person",
+						"all"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Person by ID",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}",
+						"type": "default"
+					}
+				],
+				"url": {
+					"raw": "{{host.service}}:{{port.service}}/api/person/del/{{personId}}",
+					"host": [
+						"{{host.service}}"
+					],
+					"port": "{{port.service}}",
+					"path": [
+						"api",
+						"person",
+						"del",
+						"{{personId}}"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null,
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

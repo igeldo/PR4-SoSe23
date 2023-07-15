@@ -8,9 +8,21 @@ services:
       - POSTGRES_USER=person
       - POSTGRES_PASSWORD=passGeheim
       - POSTGRES_DB=person
+
+  idm:
+    container_name: idm
+    image: quay.io/keycloak/keycloak:19.0.3-legacy
+    ports:
+      - 0.0.0.0:8080:8080
+    volumes:
+      - .:/tmp/keycloak
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=passKeycloakAdmin
+      - KEYCLOAK_IMPORT=/tmp/keycloak/java-starter-realm.json
   person:
     container_name: person
-    image: person:local
+    image: person:latest
     depends_on:
       - db-person
       - idm
