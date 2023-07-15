@@ -1,0 +1,23 @@
+# Verwenden Sie den offiziellen Node.js-Basisimage
+FROM node:alpine
+
+# Setzen Sie das Arbeitsverzeichnis im Container
+WORKDIR /app
+
+# Kopieren Sie die package.json und package-lock.json in das Arbeitsverzeichnis
+COPY package*.json ./
+
+# Installieren Sie die Abhängigkeiten
+RUN apk add --no-cache --virtual .build-deps \
+        git \
+        && npm install \
+        && apk del .build-deps
+
+# Kopieren Sie den restlichen Microservice-Code in das Arbeitsverzeichnis
+COPY . .
+
+# Öffnen Sie den Port, auf dem Ihr Microservice lauscht
+EXPOSE 8080
+
+# Starten Sie den Microservice beim Starten des Containers
+CMD ["npm", "start"]

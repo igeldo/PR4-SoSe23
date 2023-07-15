@@ -1,0 +1,37 @@
+version: '3'
+services:
+  postgresql:
+    image: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: de46503
+      POSTGRES_DB: weatherdata
+    ports:
+      - "5432:5432"
+
+  database-microservice:
+    build:
+      context: ./Datenbank
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgresql
+
+  datenabfrage:
+    build:
+      context: ./Datenabfrage
+      dockerfile: Dockerfile
+    ports:
+      - "2000:2000"
+    depends_on:
+      - database-microservice
+
+  wetterapp:
+    build:
+      context: ./Wetterapp
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    depends_on:
+      - datenabfrage

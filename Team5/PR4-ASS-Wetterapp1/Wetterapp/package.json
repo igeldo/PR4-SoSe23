@@ -1,0 +1,21 @@
+{
+    "name": "wetter-app",
+    "version": "1.0.0",
+    "description": "Eine einfache Web-App fuer das Wetter",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "keywords": [
+        "wetter",
+        "app",
+        "vorhersage"
+    ],
+    "author": "Timo Esposito",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "*",
+        "express": "*",
+        "node-fetch": "*"
+    }
+}

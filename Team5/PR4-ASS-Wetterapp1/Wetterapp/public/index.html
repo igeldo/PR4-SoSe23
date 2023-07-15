@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Wetter-App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <h1>Wetter-App</h1>
+  <form>
+    <div class="form-row">
+      <label for="city-input">Stadt:</label>
+      <input type="text" id="city-input" name="city" placeholder="Stadt eingeben">
+      <button type="submit">Suchen</button>
+    </div>
+  </form>
+  <div class="database-section">
+    <label for="db-city-input">Stadt für Datenbankabfrage:</label>
+    <input type="text" id="db-city-input" name="db-city" placeholder="Stadt eingeben">
+    <button id="datenbank-abrufen">Datenbank abrufen</button>
+  </div>
+  <div class="result-container">
+    <div class="result-section">
+      <h2>Wetterergebnis</h2>
+      <div id="wetter-ergebnis"></div>
+    </div>
+    <div class="result-section">
+      <h2>Datenbankergebnis</h2>
+      <div id="datenbank-ergebnis"></div>
+    </div>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

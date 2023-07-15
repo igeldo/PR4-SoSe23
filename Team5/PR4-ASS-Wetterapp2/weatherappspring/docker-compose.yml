@@ -1,0 +1,11 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 2345:2345
+    container_name: weather-api-container
+    image: weather-api-image
+

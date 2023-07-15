@@ -1,0 +1,19 @@
+{
+  "name": "geolokalisierung",
+  "version": "1.0.0",
+  "description": "Geolokaliserung-Microservice",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Timo Esposito",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "*",
+    "cors": "*",
+    "express": "*",
+    "geoip-lite": "*",
+    "node-geolocation": "*",
+    "request-ip": "*"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "weatherfrontend",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite"
+  },
+  "dependencies": {
+    "axios": "^x.x.x",
+    "vue": "^3.3.2",
+    "vuex": "^4.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.2.3",
+    "vite": "^4.3.5"
+  }
+}

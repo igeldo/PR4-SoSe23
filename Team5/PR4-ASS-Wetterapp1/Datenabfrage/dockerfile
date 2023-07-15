@@ -1,0 +1,21 @@
+# Basisimage
+FROM node:alpine
+
+# Arbeitsverzeichnis definieren
+WORKDIR /app
+
+# Abhängigkeiten kopieren und installieren
+COPY package*.json ./
+RUN apk add --no-cache --virtual .build-deps \
+        git \
+        && npm install --production \
+        && apk del .build-deps
+
+# App-Quellcode kopieren
+COPY . .
+
+# Container-Port öffnen
+EXPOSE 2000
+
+# App starten
+CMD [ "node", "server.js" ]

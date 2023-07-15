@@ -1,0 +1,89 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+}
+
+.container {
+  background-color: #0088ff;
+  border: 5px solid #0088ff;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+h1 {
+  text-align: center;
+  background-color: #fff;
+  padding: 20px;
+  margin-top: 0;
+}
+
+form {
+  margin-bottom: 1em;
+}
+
+.form-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+.database-section{
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+}
+
+label {
+  margin-right: 0.5em;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 0.5em;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+button[type="submit"],
+#datenbank-abrufen {
+  padding: 0.5em 1em;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #4CAF50;
+}
+
+button[type="submit"]:hover,
+#datenbank-abrufen:hover {
+  background-color: #3E8E41;
+}
+
+.result-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result-section {
+  flex: 1;
+  margin-left: 10px;
+}
+
+.result-section h2 {
+  color: #000;
+  background-color: #fff;
+  padding: 10px;
+  margin-top: 0;
+}
+
+#wetter-ergebnis,
+#datenbank-ergebnis {
+  margin-top: 1em;
+  padding: 1em;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}

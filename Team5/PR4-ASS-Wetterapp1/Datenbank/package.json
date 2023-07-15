@@ -1,0 +1,17 @@
+{
+    "name": "database-microservice",
+    "version": "1.0.0",
+    "description": "Microservice for storing weather data in a PostgreSQL database",
+    "main": "server.js",
+    "scripts": {
+      "start": "node server.js"
+    },
+    "author": "Timo Esposito",
+    "license": "MIT",
+    "dependencies": {
+      "express": "*",
+      "body-parser": "*",
+      "pg": "*"
+    }
+  }
+  

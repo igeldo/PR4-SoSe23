@@ -1,0 +1,23 @@
+version: '3'
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=weatherPost
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=weatherDB
+    ports:
+      - 5432:5432
+    container_name: weatherDB_postgres
+    volumes:
+      - ./init-scripts:/docker-entrypoint-initdb.d
+
+  access:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    container_name: weatherDB_access
+    depends_on:
+      - postgres
