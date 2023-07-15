@@ -1,113 +1,83 @@
-## Project Description
+# Wetterapp Projekt
 
-This project aims to demonstrate the use of ChatGPT in microservice development. The repository contains two microservices, "Wetterapp" and "Datenabfrage", which are containerized using Docker and can be deployed using Docker Compose. The Wetterapp microservice is a simple weather application that retrieves weather data from an external API, while the Datenabfrage microservice provides data querying functionality.
+Dieses Projekt besteht aus einer Wetter-App mit einem Frontend, einem Datenabfrage-Microservice, einem Datenbank-Microservice und einer PostgreSQL-Datenbank. Das Projekt ist containerisiert und kann mithilfe von Docker Compose bereitgestellt werden.
 
-## Required Packages
+## Voraussetzungen
 
-To install the required packages for each microservice, run the following commands:
+Um das Projekt auszuführen, müssen folgende Voraussetzungen erfüllt sein:
 
-### Wetterapp
+- Docker: Stellen Sie sicher, dass Docker auf Ihrem System installiert ist.
 
+## Installation
+
+Führen Sie die folgenden Schritte aus, um das Projekt zu installieren und auszuführen:
+
+1. Klone das Projekt-Repository auf deinen lokalen Computer.
+
+2. Navigiere in das Hauptverzeichnis des Projekts.
+
+3. Öffne die `docker-compose.yml`-Datei. Überprüfe die Konfiguration und passe sie bei Bedarf an.
+
+4. Öffne ein Terminal oder eine Eingabeaufforderung und navigiere zum Hauptverzeichnis des Projekts.
+
+5. Führe den folgenden Befehl aus, um die Docker-Images für das Projekt zu erstellen:
+
+   ```shell
+   docker-compose build
+   ```
+
+   Dadurch werden die Docker-Images für den Datenbank-Microservice, den Datenabfrage-Microservice und die Wetter-App erstellt.
+
+6. Führe anschließend den folgenden Befehl aus, um das Projekt mit Docker Compose bereitzustellen:
+
+   ```shell
+   docker-compose up
+   ```
+
+   Dadurch werden die Container für die PostgreSQL-Datenbank, den Datenbank-Microservice, die Datenabfrage und die Wetter-App erstellt und gestartet.
+
+7. Sobald die Container gestartet sind, kannst du auf die Wetter-App über deinen Webbrowser zugreifen, indem du die URL `http://localhost:3000` aufrufst.
+
+   Beachte, dass der Aufbau der Datenbank und das Abrufen von Wetterdaten einige Zeit in Anspruch nehmen können, bis sie vollständig initialisiert sind. Bitte habe Geduld und warte, bis der Vorgang abgeschlossen ist.
+
+8. Du solltest nun die Wetter-App verwenden können, um Wetterinformationen abzurufen.
+
+## Verwendung
+
+- Öffne deinen Webbrowser und navigiere zu `http://localhost:3000`, um die Wetter-App zu öffnen.
+
+- Gib den gewünschten Standort ein oder verwende die aktuelle Position, um Wetterinformationen abzurufen.
+
+- Die Wetter-App verwendet den Datenabfrage-Microservice, um die Anfrage an die Datenbank zu senden und die entsprechenden Wetterdaten abzurufen.
+
+## Anpassung
+
+Wenn du das Projekt anpassen möchtest, findest du die verschiedenen Komponenten in ihren entsprechenden Verzeichnissen:
+
+- Das Frontend der Wetter-App befindet sich im Verzeichnis `Wetterapp`.
+
+- Der Datenabfrage-Microservice befindet sich im Verzeichnis `Datenabfrage`.
+
+- Der Datenbank-Microservice befindet sich im Verzeichnis `Datenbank`.
+
+Du kannst die jeweiligen Dateien in den entsprechenden Verzeichnissen bearbeiten, um das Verhalten der Komponenten anzupassen.
+
+## Hinweise
+
+- Bitte beachte, dass in dieser README-Anleitung davon ausgegangen wird, dass Docker bereits auf deinem System installiert ist und ordnungsgemäß funktioniert. Wenn Docker nicht korrekt installiert oder konfiguriert ist, können bei der Ausführung des Projekts Fehler auftreten.
+
+- Stelle sicher, dass keine anderen Dienste oder Anwendungen auf den verwendeten Ports (5432, 8080, 2000, 3000) laufen, da diese von den Containern beansprucht werden.
+
+- Für die Verwendung der PostgreSQL-Datenbank werden folgende Zugangsdaten verwendet:
+  - Benutzername: postgres
+  - Passwort: de46503
+  - Datenbank: weatherdata
+
+- Du kannst die Zugangsdaten und andere Konfigurationsoptionen in der `docker-compose.yml`-Datei anpassen, wenn du dies benötigst.
+
+- Weitere Informationen zur Konfiguration der einzelnen Komponenten findest du in den entsprechenden Verzeichnissen des Projekts.
+
+- Wenn du das Projekt nicht mehr benötigst, kannst du die Container stoppen und entfernen, indem du den Befehl `docker-compose down` im Hauptverzeichnis des Projekts ausführst.
+
+- Falls Probleme oder Fehler auftreten, überprüfe die Ausgabe im Terminal oder der Eingabeaufforderung, in der du `docker-compose up` ausgeführt hast, um mögliche Fehlermeldungen anzuzeigen.
 ```
-npm install axios
-npm install express
-```
-
-### Datenabfrage
-
-```
-npm install express
-npm install pg
-```
-
-## Containerization
-
-Both microservices can be containerized using Docker. Follow the instructions below to containerize and run the microservices.
-
-### Docker Compose
-
-To build, run, and remove the containers for both microservices using Docker Compose, follow these steps:
-
-1. Install Docker Compose if you haven't already. You can find installation instructions [here](https://docs.docker.com/compose/install/).
-2. Navigate to the project directory in your terminal or command prompt.
-3. Run the following command to build the Docker images:
-
-```
-docker-compose build
-```
-
-This will build the Docker images for both microservices.
-
-4. Run the following command to start the containers:
-
-```
-docker-compose up
-```
-
-This will start the containers for both microservices and expose their respective ports to the host machine. You can access the Wetterapp at `http://localhost:3000` and the Datenabfrage microservice at `http://localhost:2000`.
-
-5. If you want to stop and remove the containers, run the following command:
-
-```
-docker-compose down
-```
-
-This will stop and remove the containers for both microservices.
-
-### Manual Docker commands
-
-Alternatively, you can use the manual Docker commands to build and run the containers for each microservice separately. Follow the instructions below for each microservice.
-
-### Wetterapp
-
-1. Navigate to the Wetterapp microservice directory in your terminal or command prompt.
-2. Run the following command to build the Docker image:
-
-```
-docker build -t wetterapp .
-```
-
-3. Run the following command to start the container:
-
-```
-docker run -p 3000:3000 wetterapp
-```
-
-This will start the container for the Wetterapp microservice and expose its port to the host machine. You can access the Wetterapp at `http://localhost:3000`.
-
-4. If you want to stop and remove the container, run the following command:
-
-```
-docker stop <container_id>
-docker rm <container_id>
-```
-
-Replace `<container_id>` with the ID of the running container.
-
-### Datenabfrage
-
-1. Navigate to the Datenabfrage microservice directory in your terminal or command prompt.
-2. Run the following command to build the Docker image:
-
-```
-docker build -t datenabfrage-microservice .
-```
-
-3. Run the following command to start the container:
-
-```
-docker run -p 2000:2000 datenabfrage-microservice
-```
-
-This will start the container for the Datenabfrage microservice and expose its port to the host machine. You can access the Datenabfrage microservice at `http://localhost:2000`.
-
-4. If you want to stop and remove the container, run the following command:
-
-```
-docker stop <container_id>
-docker rm <container_id>
-```
-
-Replace `<container_id>` with the ID of the running container.
-
-Authors: TiEsp001 and PBornefeld.
